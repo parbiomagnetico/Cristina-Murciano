@@ -33,7 +33,7 @@ const latestPosts = [...posts]
 		<EnergyComposition />
 
 		<!-- Intro Section with SEO Keywords -->
-		<section class="pt-12 pb-8 px-6 max-w-4xl mx-auto text-center">
+		<section class="pt-12 pb-8 px-6 max-w-4xl mx-auto text-center reveal">
 			<h2 class="text-4xl md:text-5xl font-serif text-gray-800 mt-4 mb-6">
 				Terapias Naturales y <span class="holographic-text"
 					>Masajes</span
@@ -56,7 +56,7 @@ const latestPosts = [...posts]
 		</section>
 
 		<!-- Services Section -->
-		<section class="py-12 px-6 max-w-7xl mx-auto">
+		<section class="py-12 px-6 max-w-7xl mx-auto reveal">
 			<div class="text-center mb-16">
 				<h2 class="text-4xl font-serif text-gray-800 mb-6">
 					Mis Tratamientos
@@ -118,7 +118,7 @@ const latestPosts = [...posts]
 			</div>
 		</section>
 
-		<section class="py-12 px-6">
+		<section class="py-12 px-6 reveal">
 			<div
 				class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center"
 			>
@@ -155,29 +155,29 @@ const latestPosts = [...posts]
 				</div>
 				<div class="order-1 md:order-2 flex justify-center">
 					<div class="relative w-full max-w-md">
-						<div class="glass-panel p-2 rounded-[2rem] hover:-translate-y-2 transition-all duration-300 group">
-							<div class="w-full aspect-[4/5] rounded-3xl overflow-hidden relative">
+						<div class="glass-panel p-3 rounded-[3rem] hover:-translate-y-2 transition-all duration-500 group relative z-10 shadow-xl shadow-teal-900/5">
+							<div class="w-full aspect-[4/5] rounded-[2rem] overflow-hidden relative border border-white/20">
 								{
-									images["/src/assets/images/Consulta Biomagnetismo Cristina Murciano.webp"]
+									images["/src/assets/images/cristina.png"]
 										?.default && (
 										<img
 											src={
 												images[
-													"/src/assets/images/Consulta Biomagnetismo Cristina Murciano.webp"
+													"/src/assets/images/cristina.png"
 												].default.src
 											}
-											alt="Cristina Murciano en consulta"
+											alt="Cristina Murciano"
 											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 										/>
 									)
 								}
-								<div class="absolute inset-0 bg-gradient-to-t from-lilac-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+								<div class="absolute inset-0 bg-gradient-to-t from-teal-900/10 to-transparent"></div>
 							</div>
 						</div>
 						
-						
-
-						<div class="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-tr from-teal-200 to-lilac-200 rounded-full blur-2xl opacity-50 -z-10 animate-pulse-slow"></div>
+						<!-- Decorative element behind image -->
+						<div class="absolute -bottom-6 -right-6 w-32 h-32 bg-lilac-200/50 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
+						<div class="absolute -top-10 -left-10 w-48 h-48 bg-teal-100/40 rounded-full blur-[80px] -z-10"></div>
 					</div>
 				</div>
 
@@ -185,7 +185,7 @@ const latestPosts = [...posts]
 		</section>
 
 		<!-- Testimonials Preview -->
-		<section class="py-12 px-6 max-w-7xl mx-auto">
+		<section class="py-12 px-6 max-w-7xl mx-auto reveal">
 			<div class="text-center mb-16">
 				<span
 					class="text-lilac-600 font-medium tracking-widest uppercase text-sm"
@@ -237,7 +237,7 @@ const latestPosts = [...posts]
 		</section>
 
 		<!-- Blog Preview -->
-		<section class="py-12 px-6">
+		<section class="py-12 px-6 reveal">
 			<div class="max-w-7xl mx-auto">
 				<div class="text-center mb-16">
 					<span
@@ -302,25 +302,70 @@ const latestPosts = [...posts]
 		</section>
 
 		<!-- Local SEO / Location Section -->
-		<section class="py-8 px-6 max-w-4xl mx-auto text-center">
-			<h2 class="text-2xl font-serif text-gray-800 mb-6">
-				Encuéntrame en Monzón
-			</h2>
-			<a
-				href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(content.company.address)}`}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-block text-gray-600 font-medium mb-4 hover:text-teal-600 transition-colors group"
-			>
-				<span class="mr-2 group-hover:scale-110 inline-block transition-transform">📍</span>
-				<strong class="border-b border-transparent group-hover:border-teal-600 transition-colors">
-					{content.company.address}
-				</strong>
-			</a>
-			<p class="text-gray-500 font-light text-sm">
-				Atención con cita previa. Contacta conmigo para reservar tu
-				sesión personalizada.
-			</p>
+		<section class="py-16 px-6 reveal">
+			<div class="max-w-5xl mx-auto">
+				<div class="glass-panel rounded-[3rem] p-8 md:p-12 overflow-hidden relative group">
+					<!-- Background glow internal to card -->
+					<div class="absolute top-0 right-0 w-64 h-64 bg-teal-100/30 rounded-full blur-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+					<div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+						<div class="text-center md:text-left">
+							<span class="text-xs font-semibold text-teal-600 uppercase tracking-widest mb-3 block">Ubicación</span>
+							<h2 class="text-3xl md:text-4xl font-serif text-gray-800 mb-6">Estamos en el corazón de <br class="hidden md:block"/><span class="text-teal-600 italic">Monzón</span></h2>
+							
+							<div class="space-y-6">
+								<div class="flex items-center gap-4 justify-center md:justify-start">
+									<div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+										</svg>
+									</div>
+									<p class="text-gray-700 font-medium">{content.company.address}</p>
+								</div>
+
+								<div class="flex items-center gap-4 justify-center md:justify-start">
+									<div class="w-10 h-10 rounded-full bg-lilac-50 flex items-center justify-center text-lilac-600">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+										</svg>
+									</div>
+									<p class="text-gray-600 font-light">Atención exclusiva con cita previa</p>
+								</div>
+							</div>
+
+							<div class="mt-10 flex flex-wrap gap-4 justify-center md:justify-start">
+								<a
+									href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(content.company.address)}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="px-8 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-teal-600 transition-colors shadow-lg"
+								>
+									Abrir en Google Maps
+								</a>
+								<a
+									href="#contact"
+									class="px-8 py-3 border border-gray-200 rounded-full font-medium hover:border-teal-400 text-gray-700 transition-all"
+								>
+									Contactar ahora
+								</a>
+							</div>
+						</div>
+
+						<div class="relative h-64 md:h-80 w-full rounded-[2rem] overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000">
+							<!-- Stylized Placeholder for Map or Studio Image -->
+							<div class="absolute inset-0 bg-teal-50/50 flex items-center justify-center border-2 border-dashed border-teal-200 rounded-[2rem]">
+								<div class="text-center">
+									<div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+										<span class="text-3xl animate-bounce">📍</span>
+									</div>
+									<p class="text-sm text-teal-700 font-medium">Plaza María Moliner 14</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</section>
 	</main>
 

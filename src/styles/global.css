@@ -158,4 +158,37 @@
   .holographic-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-lilac-500 to-gold-400 animate-gradient-x bg-[length:200%_auto];
   }
+
+  /* Entrance Animation Utility */
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reveal {
+    view-timeline-name: --section;
+    view-timeline-axis: block;
+    animation: reveal-scroll both;
+    animation-timeline: --section;
+    animation-range: entry 10% cover 30%;
+  }
+
+  @keyframes reveal-scroll {
+    from {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
 }
