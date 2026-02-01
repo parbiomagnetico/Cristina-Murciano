@@ -1,0 +1,247 @@
+---
+import content from "../data/content.json";
+---
+
+<section
+    class="relative min-h-screen flex items-center justify-center overflow-hidden"
+>
+    <!-- Background Elements -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <!-- Central Glow -->
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-lilac-200/40 to-teal-200/40 rounded-full blur-[80px] animate-pulse-slow"
+        >
+        </div>
+
+        <!-- Floating Petals (SVG) -->
+
+        <!-- Cluster 1: Top Left (Teal/Blue) -->
+        <svg
+            class="absolute top-[15%] left-[10%] w-32 h-32 opacity-50 animate-float-delayed"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M50 0C50 0 70 30 70 50C70 70 50 100 50 100C50 100 30 70 30 50C30 30 50 0 50 0Z"
+                fill="url(#grad1)"></path>
+            <defs>
+                <linearGradient
+                    id="grad1"
+                    x1="50"
+                    y1="0"
+                    x2="50"
+                    y2="100"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#2DD4BF" stop-opacity="0.6"></stop>
+                    <!-- Increased opacity -->
+                    <stop offset="1" stop-color="#2DD4BF" stop-opacity="0.1"
+                    ></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <!-- Cluster 2: Bottom Right (Lilac/Purple) -->
+        <svg
+            class="absolute bottom-[20%] right-[10%] w-40 h-40 opacity-40 animate-float-reverse"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M50 0C50 0 80 30 80 50C80 70 50 100 50 100C50 100 20 70 20 50C20 30 50 0 50 0Z"
+                fill="url(#grad2)"></path>
+            <defs>
+                <linearGradient
+                    id="grad2"
+                    x1="50"
+                    y1="0"
+                    x2="50"
+                    y2="100"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#A78BFA" stop-opacity="0.5"></stop>
+                    <stop offset="1" stop-color="#A78BFA" stop-opacity="0.1"
+                    ></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <!-- Cluster 3: Top Right (Gold/Warm) -->
+        <svg
+            class="absolute top-[20%] right-[15%] w-20 h-20 opacity-50 animate-float"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M50 0C50 0 70 30 70 50C70 70 50 100 50 100C50 100 30 70 30 50C30 30 50 0 50 0Z"
+                fill="url(#grad3)"></path>
+            <defs>
+                <linearGradient
+                    id="grad3"
+                    x1="50"
+                    y1="0"
+                    x2="50"
+                    y2="100"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#FDE047" stop-opacity="0.6"></stop>
+                    <stop offset="1" stop-color="#FDE047" stop-opacity="0"
+                    ></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <!-- Cluster 4: Bottom Left (Teal/Green) -->
+        <svg
+            class="absolute bottom-[15%] left-[20%] w-48 h-48 opacity-30 animate-float-slow"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M50 0C50 0 75 30 75 50C75 70 50 100 50 100C50 100 25 70 25 50C25 30 50 0 50 0Z"
+                fill="url(#grad4)"></path>
+            <defs>
+                <linearGradient
+                    id="grad4"
+                    x1="50"
+                    y1="0"
+                    x2="50"
+                    y2="100"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#99F6E4" stop-opacity="0.5"></stop>
+                    <stop offset="1" stop-color="#99F6E4" stop-opacity="0.1"
+                    ></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <!-- NEW: Center Left Floating (Lilac Small) -->
+        <svg
+            class="absolute top-[45%] left-[5%] w-16 h-16 opacity-40 animate-float"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M50 0C50 0 70 30 70 50C70 70 50 100 50 100C50 100 30 70 30 50C30 30 50 0 50 0Z"
+                fill="url(#grad5)"></path>
+            <defs>
+                <linearGradient
+                    id="grad5"
+                    x1="50"
+                    y1="0"
+                    x2="50"
+                    y2="100"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#C084FC" stop-opacity="0.5"></stop>
+                    <stop offset="1" stop-color="#C084FC" stop-opacity="0.1"
+                    ></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <!-- NEW: Top Center (Teal Very Small) -->
+        <svg
+            class="absolute top-[10%] left-[45%] w-12 h-12 opacity-40 animate-float-reverse"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M50 0C50 0 70 30 70 50C70 70 50 100 50 100C50 100 30 70 30 50C30 30 50 0 50 0Z"
+                fill="url(#grad6)"></path>
+            <defs>
+                <linearGradient
+                    id="grad6"
+                    x1="50"
+                    y1="0"
+                    x2="50"
+                    y2="100"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#5EEAD4" stop-opacity="0.5"></stop>
+                    <stop offset="1" stop-color="#5EEAD4" stop-opacity="0.1"
+                    ></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <!-- NEW: Bottom Right Center (Gold Large Blur) -->
+        <svg
+            class="absolute bottom-[30%] right-[25%] w-36 h-36 opacity-20 blur-sm animate-float-slow"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M50 0C50 0 75 30 75 50C75 70 50 100 50 100C50 100 25 70 25 50C25 30 50 0 50 0Z"
+                fill="url(#grad7)"></path>
+            <defs>
+                <linearGradient
+                    id="grad7"
+                    x1="50"
+                    y1="0"
+                    x2="50"
+                    y2="100"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#FCD34D" stop-opacity="0.5"></stop>
+                    <stop offset="1" stop-color="#FCD34D" stop-opacity="0.1"
+                    ></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <span
+            class="block text-teal-600 font-medium tracking-widest uppercase text-sm mb-2"
+        >
+            {content.company.title}
+        </span>
+
+        <h1
+            class="text-6xl md:text-8xl font-serif font-medium leading-tight mt-0 mb-8"
+        >
+            <span class="block text-gray-800">Equilibrio</span>
+            <span
+                class="holographic-text animate-gradient bg-[length:200%_auto]"
+                >Natural</span
+            >
+        </h1>
+
+        <p
+            class="text-xl md:text-2xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed mb-12 text-balance"
+        >
+            {content.hero.subtitle}
+        </p>
+
+        <div
+            class="flex flex-col sm:flex-row gap-6 justify-center items-center"
+        >
+            <a
+                href="#contact"
+                class="group relative px-8 py-3 bg-gray-900 text-white rounded-full font-medium transition-transform hover:scale-105 overflow-hidden"
+            >
+                <span class="relative z-10">{content.hero.cta}</span>
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-teal-500 to-lilac-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                </div>
+            </a>
+
+            <a
+                href="/tratamientos"
+                class="px-8 py-3 rounded-full border border-gray-300 hover:border-teal-400 text-gray-600 hover:text-teal-600 transition-colors font-medium"
+            >
+                Descubrir Terapias
+            </a>
+        </div>
+    </div>
+</section>

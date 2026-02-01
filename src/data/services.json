@@ -1,0 +1,74 @@
+[
+    {
+        "id": "masaje-muscular",
+        "title": "Masaje Muscular",
+        "shortDescription": "Libera dolor y tensión muscular.",
+        "fullDescription": "Tratamiento enfocado en liberar molestias musculares y devolver al cuerpo su equilibrio a través del Quiromasaje. Aplicamos técnicas precisas como amasamientos, digitopresión y percusiones para disolver contracturas producidas por estrés, malas posturas o sobreesfuerzo físico, facilitando la eliminación de toxinas y activando la circulación sanguínea.",
+        "duration": "60 min",
+        "price": "50€",
+        "image": "deep.png"
+    },
+    {
+        "id": "masaje-antiestres",
+        "title": "Masaje Antiestrés",
+        "shortDescription": "Libera la tensión acumulada.",
+        "fullDescription": "Una terapia manual suave destinada a mejorar el bienestar profundo. Su objetivo principal es aumentar la producción de endorfinas, liberando tensiones físicas y memorias emocionales acumuladas. Creamos un espacio de calma total con luces indirectas y música relajante para lograr un estado profundo de armonía cuerpo-mente.",
+        "duration": "60 min",
+        "price": "50€",
+        "image": "relax.png"
+    },
+    {
+        "id": "piedras-calientes",
+        "title": "Piedras Calientes",
+        "shortDescription": "Libera tensión y rigidez muscular.",
+        "fullDescription": "También conocida como terapia geotermal, combina el masaje tradicional con el uso de piedras volcánicas calientes. El calor penetra profundamente en los tejidos para estimular la irrigación sanguínea, eliminar toxinas y lograr una relajación muscular mucho más intensa que otros masajes manuales. Ideal para momentos de gran estrés o agotamiento.",
+        "duration": "60 min",
+        "price": "60€",
+        "image": "blog-stones.png"
+    },
+    {
+        "id": "bambuterapia",
+        "title": "Bambuterapia",
+        "shortDescription": "Desintoxica, drena y relaja tu musculatura.",
+        "fullDescription": "Técnica innovadora que utiliza cañas de bambú de diferentes grosores para realizar un estímulo profundo en piel, músculos y sistema nervioso. Actúa como un potente drenaje linfático y descontracturante, tonificando el cuerpo y reactivando la circulación mientras induce un estado de relajación física y mental profunda.",
+        "duration": "60 min",
+        "price": "55€",
+        "image": "blog-bamboo.png"
+    },
+    {
+        "id": "reflexoterapia",
+        "title": "Reflexoterapia",
+        "shortDescription": "Relaja y armoniza a través de tus pies.",
+        "fullDescription": "A través de la estimulación de puntos reflejos en los pies, trabajamos de forma holística sobre todos los órganos y sistemas del cuerpo. Este tratamiento mejora la circulación, depura toxinas, reduce el estrés y equilibra la energía vital, promoviendo la capacidad natural de autocuración del organismo.",
+        "duration": "45 min",
+        "price": "45€",
+        "image": "blog-reflexology.png"
+    },
+    {
+        "id": "masaje-circulatorio",
+        "title": "Masaje Circulatorio",
+        "shortDescription": "Libera tus piernas cansadas.",
+        "fullDescription": "Tratamiento especializado para activar el retorno venoso y la circulación linfática. Ideal para aliviar la pesadez, hinchazón y molestias en las piernas. Mediante maniobras mecánicas y estimulación neuromuscular, favorecemos el flujo sanguíneo y la nutrición celular, dejando una sensación de ligereza y alivio inmediato.",
+        "duration": "50 min",
+        "price": "50€",
+        "image": "blog-circulacion.png"
+    },
+    {
+        "id": "craneosacral",
+        "title": "Craneosacral",
+        "shortDescription": "Libera tu cansancio mental.",
+        "fullDescription": "Técnica manual extremadamente sutil que trata los desequilibrios del sistema cráneo-sacro. Mediante una leve presión, se liberan tensiones profundas que pueden causar cefaleas, mareos o cansancio mental. Es un proceso no invasivo que activa los mecanismos naturales de curación y equilibrio hormonal del cuerpo.",
+        "duration": "50 min",
+        "price": "55€",
+        "image": "blog-head.png"
+    },
+    {
+        "id": "masaje-metamorfico",
+        "title": "Masaje Metamórfico",
+        "shortDescription": "Libera emociones que te impiden avanzar.",
+        "fullDescription": "Técnica enfocada en la liberación de bloqueos emocionales y patrones antiguos. Mediante suaves pases en los pies (zona refleja de la columna), se accede a memorias celulares desde la etapa prenatal hasta el presente. Es una herramienta poderosa de autoconocimiento y crecimiento personal que aporta paz y claridad emocional.",
+        "duration": "60 min",
+        "price": "50€",
+        "image": "blog-massage.png"
+    }
+]

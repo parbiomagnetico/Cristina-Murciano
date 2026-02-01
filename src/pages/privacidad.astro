@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import content from "../data/content.json";
+---
+
+<BaseLayout title={`Política de Privacidad | ${content.company.name}`}>
+    <Nav />
+    <main class="pt-32 pb-24 px-6 max-w-4xl mx-auto">
+        <h1 class="text-4xl font-serif text-gray-900 mb-12 text-center">
+            Política de Privacidad
+        </h1>
+
+        <div
+            class="glass-panel p-8 md:p-12 rounded-[2rem] prose prose-slate prose-teal max-w-none font-light leading-relaxed text-gray-600"
+        >
+            <section class="mb-10">
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    1. Identidad del Responsable
+                </h2>
+                <p>
+                    De acuerdo con el Reglamento (UE) 2016/679 (RGPD) y la Ley
+                    Orgánica 3/2018 (LOPDGDD), le informamos que el responsable
+                    del tratamiento de sus datos personales es:
+                </p>
+                <ul class="list-none pl-0 mt-4 space-y-2">
+                    <li>
+                        <strong>Responsable:</strong>
+                        {content.company.name}
+                    </li>
+                    <li>
+                        <strong>Domicilio:</strong>
+                        {content.company.address}
+                    </li>
+                    <li><strong>Email:</strong> {content.company.email}</li>
+                </ul>
+            </section>
+
+            <section class="mb-10">
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    2. Finalidad del Tratamiento
+                </h2>
+                <p>
+                    Tratamos sus datos personales con las siguientes
+                    finalidades:
+                </p>
+                <ul class="list-disc pl-5 space-y-2 mt-4">
+                    <li>
+                        Gestionar las citas y servicios solicitados por el
+                        usuario.
+                    </li>
+                    <li>
+                        Responder a las consultas y solicitudes enviadas a
+                        través de nuestros canales de contacto.
+                    </li>
+                    <li>
+                        Envío de comunicaciones relacionadas con su tratamiento
+                        o bienestar (previo consentimiento).
+                    </li>
+                </ul>
+            </section>
+
+            <section class="mb-10">
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    3. Legitimación
+                </h2>
+                <p>
+                    La base legal para el tratamiento de sus datos es la
+                    ejecución de la prestación de servicios solicitada y, en su
+                    caso, el consentimiento expreso otorgado para otras
+                    finalidades.
+                </p>
+            </section>
+
+            <section class="mb-10">
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    4. Destinatarios
+                </h2>
+                <p>
+                    No se comunicarán los datos a terceros, salvo obligación
+                    legal o necesidad técnica para la prestación del servicio
+                    (como proveedores de alojamiento web o servicios de
+                    mensajería).
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    5. Sus Derechos
+                </h2>
+                <p>
+                    Usted tiene derecho a acceder, rectificar y suprimir sus
+                    datos, así como otros derechos explicados en la información
+                    adicional, contactando a través del email: {
+                        content.company.email
+                    }
+                </p>
+            </section>
+        </div>
+    </main>
+    <Footer />
+</BaseLayout>

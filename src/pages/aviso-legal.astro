@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import content from "../data/content.json";
+---
+
+<BaseLayout title={`Aviso Legal | ${content.company.name}`}>
+    <Nav />
+    <main class="pt-32 pb-24 px-6 max-w-4xl mx-auto">
+        <h1 class="text-4xl font-serif text-gray-900 mb-12 text-center">
+            Aviso Legal
+        </h1>
+
+        <div
+            class="glass-panel p-8 md:p-12 rounded-[2rem] prose prose-slate prose-teal max-w-none font-light leading-relaxed text-gray-600"
+        >
+            <section class="mb-10">
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    1. Datos Identificativos
+                </h2>
+                <p>
+                    En cumplimiento con el deber de información recogido en
+                    artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios
+                    de la Sociedad de la Información y del Comercio Electrónico,
+                    a continuación se reflejan los siguientes datos:
+                </p>
+                <ul class="list-none pl-0 mt-4 space-y-2">
+                    <li><strong>Titular:</strong> {content.company.name}</li>
+                    <li><strong>Actividad:</strong> {content.company.title}</li>
+                    <li>
+                        <strong>Domicilio:</strong>
+                        {content.company.address}
+                    </li>
+                    <li><strong>Email:</strong> {content.company.email}</li>
+                </ul>
+            </section>
+
+            <section class="mb-10">
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    2. Usuarios
+                </h2>
+                <p>
+                    El acceso y/o uso de este portal atribuye la condición de
+                    USUARIO, que acepta, desde dicho acceso y/o uso, las
+                    Condiciones Generales de Uso aquí reflejadas.
+                </p>
+            </section>
+
+            <section class="mb-10">
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    3. Uso del Portal
+                </h2>
+                <p>
+                    El sitio web proporciona el acceso a multitud de
+                    informaciones, servicios o datos en Internet pertenecientes
+                    a {content.company.name}. El USUARIO asume la
+                    responsabilidad del uso del portal.
+                </p>
+            </section>
+
+            <section class="mb-10">
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    4. Propiedad Intelectual e Industrial
+                </h2>
+                <p>
+                    {content.company.name} por sí o como cesionaria, es titular de
+                    todos los derechos de propiedad intelectual e industrial de su
+                    página web, así como de los elementos contenidos en la misma (a
+                    título enunciativo, imágenes, sonido, audio, vídeo, software o
+                    textos; marcas o logotipos, combinaciones de colores, estructura
+                    y diseño, selección de materiales usados, etc.).
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-serif text-gray-800 mb-4">
+                    5. Exclusión de Garantías y Responsabilidad
+                </h2>
+                <p>
+                    {content.company.name} no se hace responsable, en ningún caso,
+                    de los daños y perjuicios de cualquier naturaleza que pudieran
+                    ocasionar, a título enunciativo: errores u omisiones en los contenidos,
+                    falta de disponibilidad del portal o la transmisión de virus o
+                    programas maliciosos o lesivos en los contenidos, a pesar de haber
+                    adoptado todas las medidas tecnológicas necesarias para evitarlo.
+                </p>
+            </section>
+        </div>
+    </main>
+    <Footer />
+</BaseLayout>

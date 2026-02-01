@@ -1,0 +1,137 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Sobre Mí | Cristina Murciano">
+    <Nav />
+
+    <main class="pt-32 pb-20 px-6">
+        <!-- Intro Section -->
+
+        <section class="max-w-5xl mx-auto mb-24">
+            <div class="flex flex-col md:flex-row items-start gap-12">
+                <!-- Image Placeholder (Glass Frame) -->
+                <div class="w-full md:w-1/2 relative top-0 md:-mt-8">
+                    <!-- Added negative margin to pull image up slightly if needed, or just align top -->
+                    <div
+                        class="aspect-[3/4] rounded-3xl overflow-hidden glass-panel relative z-10 p-2"
+                    >
+                        <img
+                            src="/src/assets/images/cristina.png"
+                            alt="Cristina Murciano"
+                            class="w-full h-full object-cover rounded-2xl"
+                        />
+                    </div>
+                    <!-- Decorative Orb behind image -->
+                    <div
+                        class="absolute -top-10 -left-10 w-40 h-40 bg-lilac-300 rounded-full blur-[60px] opacity-60 animate-float"
+                    >
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 space-y-6">
+                    <span
+                        class="text-teal-600 font-medium tracking-widest uppercase text-sm"
+                        >Mi Historia</span
+                    >
+                    <h1 class="text-5xl font-serif text-gray-800">
+                        Pasión por el <span class="holographic-text"
+                            >Bienestar</span
+                        >
+                    </h1>
+                    <div
+                        class="space-y-4 text-gray-600 font-light leading-relaxed text-lg"
+                    >
+                        <p>
+                            Hola, soy Cristina. Mi viaje hacia el mundo de las
+                            terapias holísticas comenzó con una simple búsqueda:
+                            entender cómo nuestro cuerpo y mente están
+                            intrínsecamente conectados.
+                        </p>
+                        <p>
+                            Con más de 10 años de experiencia, he desarrollado
+                            un método propio que combina la precisión técnica
+                            del masaje terapéutico con la sensibilidad
+                            energética. No solo trato el dolor físico, sino que
+                            busco devolver el equilibrio a todo tu ser.
+                        </p>
+                        <p>
+                            Mi consulta en Monzón es un santuario diseñado para
+                            que, al entrar, el mundo exterior desaparezca y solo
+                            existas tú y tu momento de calma.
+                        </p>
+                    </div>
+
+                    <img
+                        src="/signature.png"
+                        alt="Firma Cristina"
+                        class="h-16 opacity-60 mt-4"
+                        onerror="this.style.display='none'"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Grid -->
+        <section class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-serif text-center mb-16 text-gray-800">
+                Mi Filosofía
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="glass-panel p-8 rounded-2xl text-center hover:bg-white/80 transition-colors"
+                >
+                    <div
+                        class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl"
+                    >
+                        🌿
+                    </div>
+                    <h3 class="text-xl font-serif mb-3 text-gray-900">
+                        Origen Natural
+                    </h3>
+                    <p class="text-gray-500 font-light">
+                        Utilizo exclusivamente aceites y productos 100%
+                        orgánicos, respetuosos con tu piel y con el medio
+                        ambiente.
+                    </p>
+                </div>
+                <div
+                    class="glass-panel p-8 rounded-2xl text-center hover:bg-white/80 transition-colors"
+                >
+                    <div
+                        class="w-16 h-16 bg-lilac-50 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl"
+                    >
+                        ✨
+                    </div>
+                    <h3 class="text-xl font-serif mb-3 text-gray-900">
+                        Energía Continua
+                    </h3>
+                    <p class="text-gray-500 font-light">
+                        Cada sesión es un flujo constante. Entiendo el cuerpo
+                        como un todo, no como partes aisladas a reparar.
+                    </p>
+                </div>
+                <div
+                    class="glass-panel p-8 rounded-2xl text-center hover:bg-white/80 transition-colors"
+                >
+                    <div
+                        class="w-16 h-16 bg-gold-50 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl"
+                    >
+                        🧘‍♀️
+                    </div>
+                    <h3 class="text-xl font-serif mb-3 text-gray-900">
+                        Atención Plena
+                    </h3>
+                    <p class="text-gray-500 font-light">
+                        Escucha activa antes, durante y después del tratamiento.
+                        Tu feedback guía mis manos.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+</BaseLayout>

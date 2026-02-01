@@ -1,0 +1,59 @@
+---
+import content from "../data/content.json";
+
+const links = content.navigation;
+---
+
+<header class="fixed top-0 left-0 w-full z-50 flex justify-center pt-6 px-4">
+    <nav
+        class="glass-panel rounded-full px-8 py-3 flex items-center justify-between gap-8 max-w-4xl w-full"
+    >
+        <a href="/" class="group flex items-center gap-2">
+            <img
+                src="/src/assets/images/logo.png"
+                alt="Cristina Murciano Logo"
+                class="h-12 w-auto object-contain hover:scale-105 transition-transform"
+            />
+            <!-- Fallback text hidden on small screens if logo has text, or kept if logo is icon only. Keeping it hidden for now as logo likely has text -->
+            <span class="sr-only">Cristina Murciano</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            {
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        class="relative text-sm uppercase tracking-widest text-gray-600 hover:text-teal-600 font-medium transition-colors group py-2"
+                    >
+                        {link.name}
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-teal-400 to-lilac-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+                    </a>
+                ))
+            }
+        </div>
+
+        <a
+            href="#contact"
+            class="hidden md:block bg-teal-200/50 hover:bg-teal-200/80 text-teal-900 px-5 py-2 rounded-full text-sm font-medium transition-all backdrop-blur-sm"
+        >
+            Reservar
+        </a>
+
+        <!-- Mobile Menu Button (Placeholder) -->
+        <button class="md:hidden text-gray-700">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </nav>
+</header>

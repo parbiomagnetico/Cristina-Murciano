@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+const faqs = [
+    {
+        question: "¿Qué tipo de productos utilizas en los masajes?",
+        answer: "Utilizo exclusivamente aceites y cremas 100% ecológicas y de origen natural, libres de parabenos y químicos agresivos. Trabajo con marcas locales y aceites esenciales puros.",
+    },
+    {
+        question: "¿Necesito llevar algo a la sesión?",
+        answer: "No necesitas traer nada. Dispongo de todo lo necesario (toallas, ropa interior desechable si se requiere, etc.) para que tu experiencia sea cómoda y sin preocupaciones.",
+    },
+    {
+        question: "¿Cuánto dura una sesión típica?",
+        answer: "Las sesiones varían entre 45 y 90 minutos, dependiendo del tratamiento elegido. Recomiendo llegar 5 minutos antes para comentar tus necesidades con calma.",
+    },
+    {
+        question: "¿Tratas lesiones deportivas?",
+        answer: "Realizo masajes descontracturantes y de descarga que alivian tensiones musculares comunes en deportistas. Sin embargo, para lesiones agudas o rehabilitación grave, recomiendo consultar primero a un médico o fisioterapeuta.",
+    },
+    {
+        question: "¿Cómo puedo reservar cita?",
+        answer: "La forma más rápida es a través de WhatsApp (botón en esta web) o llamando directamente. Atiendo con cita previa para garantizar la exclusividad de tu tiempo.",
+    },
+];
+---
+
+<BaseLayout title="Preguntas Frecuentes | Cristina Murciano">
+    <Nav />
+
+    <main class="pt-32 pb-20 px-6">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <h1 class="text-4xl font-serif text-gray-800 mb-4">
+                Preguntas <span class="text-teal-500 italic">Frecuentes</span>
+            </h1>
+            <p class="text-gray-500 font-light">
+                Todo lo que necesitas saber antes de tu primera visita.
+            </p>
+        </div>
+
+        <section class="max-w-2xl mx-auto space-y-6">
+            {
+                faqs.map((faq, index) => (
+                    <details class="glass-panel rounded-2xl group overflow-hidden transition-all duration-300 open:bg-white/90">
+                        <summary class="flex justify-between items-center p-6 text-lg font-medium text-gray-800 cursor-pointer list-none select-none">
+                            <span>{faq.question}</span>
+                            <span class="transform group-open:rotate-180 transition-transform duration-300 text-teal-500">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    />
+                                </svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-6 text-gray-600 font-light leading-relaxed animate-fade-in">
+                            {faq.answer}
+                        </div>
+                    </details>
+                ))
+            }
+        </section>
+    </main>
+
+    <Footer />
+</BaseLayout>

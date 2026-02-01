@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import posts from "../../data/posts.json";
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/images/*.png",
+    { eager: true },
+);
+---
+
+<BaseLayout title="Blog | Cristina Murciano">
+    <Nav />
+
+    <main class="pt-32 pb-20 px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span
+                class="text-teal-600 font-medium tracking-widest uppercase text-sm"
+                >Diario de Bienestar</span
+            >
+            <h1 class="text-4xl md:text-5xl font-serif text-gray-800 mt-4 mb-6">
+                Artículos y <span class="holographic-text">Consejos</span>
+            </h1>
+            <p class="text-gray-500 font-light text-lg">
+                Espacio dedicado a compartir conocimientos sobre salud natural,
+                autocuidado y equilibrio.
+            </p>
+        </div>
+
+        <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+        >
+            {
+                posts.map((post) => {
+                    const imageSrc =
+                        images[`/src/assets/images/${post.image}`]?.default;
+                    return (
+                        <a
+                            href={`/blog/${post.slug}`}
+                            class="group glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-300 block h-full flex flex-col"
+                        >
+                            <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                                {imageSrc && (
+                                    <img
+                                        src={imageSrc.src}
+                                        alt={post.image_alt || post.title}
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                    />
+                                )}
+                            </div>
+
+                            <div class="p-8 flex flex-col flex-grow">
+                                <span class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3 block">
+                                    {post.date}
+                                </span>
+                                <h2 class="text-2xl font-serif text-gray-800 mb-3 group-hover:text-lilac-600 transition-colors line-clamp-2">
+                                    {post.title}
+                                </h2>
+                                <p class="text-gray-500 font-light mb-6 line-clamp-3 text-sm leading-relaxed flex-grow">
+                                    {post.excerpt}
+                                </p>
+                                <span class="text-sm font-medium text-gray-900 group-hover:text-teal-600 transition-colors flex items-center mt-auto">
+                                    Leer artículo
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                        />
+                                    </svg>
+                                </span>
+                            </div>
+                        </a>
+                    );
+                })
+            }
+        </div>
+    </main>
+
+    <Footer />
+</BaseLayout>

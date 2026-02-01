@@ -1,0 +1,328 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import EnergyComposition from "../components/EnergyComposition.astro";
+import Footer from "../components/Footer.astro";
+import services from "../data/services.json";
+import content from "../data/content.json";
+import reviews from "../data/reviews.json";
+import posts from "../data/posts.json";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"/src/assets/images/*.{png,webp,jpg,jpeg}",
+	{ eager: true },
+);
+
+// Get latest 3 reviews (sorted by date desc)
+const latestReviews = [...reviews]
+	.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+	.slice(0, 3);
+
+// Get latest 3 blog posts (sorted by date desc)
+const latestPosts = [...posts]
+	.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+	.slice(0, 3);
+---
+
+<BaseLayout
+	title={`Masajes y Terapias Holísticas en Monzón | ${content.company.name}`}
+>
+	<Nav />
+
+	<main>
+		<EnergyComposition />
+
+		<!-- Intro Section with SEO Keywords -->
+		<section class="pt-32 pb-20 px-6 max-w-4xl mx-auto text-center">
+			<h2 class="text-4xl md:text-5xl font-serif text-gray-800 mt-4 mb-6">
+				Terapias Naturales y <span class="holographic-text"
+					>Masajes</span
+				> en Monzón
+			</h2>
+			<p
+				class="text-gray-600 font-light text-lg leading-relaxed max-w-3xl mx-auto"
+			>
+				Bienvenido/a a mi espacio de bienestar en <strong
+					>Monzón (Huesca)</strong
+				>. Ofrezco tratamientos personalizados de <strong
+					>masaje terapéutico</strong
+				>, <strong>reflexología podal</strong>, <strong
+					>drenaje linfático</strong
+				> y terapias holísticas como el <strong>par biomagnético</strong
+				> y <strong>Reiki</strong>. Mi objetivo es ayudarte a recuperar
+				el equilibrio físico y emocional a través de técnicas naturales
+				adaptadas a tus necesidades.
+			</p>
+		</section>
+
+		<!-- Services Section -->
+		<section class="py-24 px-6 max-w-7xl mx-auto">
+			<div class="text-center mb-16">
+				<h2 class="text-4xl font-serif text-gray-800 mb-6">
+					Mis Tratamientos
+				</h2>
+				<div
+					class="w-24 h-1 bg-gradient-to-r from-teal-300 to-lilac-300 mx-auto rounded-full"
+				>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{
+					services.slice(0, 3).map((service) => {
+						const imageSrc =
+							images[`/src/assets/images/${service.image}`]
+								?.default;
+						return (
+							<article class="glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 cursor-pointer group flex flex-col transition-all duration-300">
+								<!-- Image Container -->
+								<div class="w-full h-56 overflow-hidden relative">
+									{imageSrc && (
+										<img
+											src={imageSrc.src}
+											alt={service.title}
+											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+										/>
+									)}
+									<div class="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+								</div>
+								
+								<!-- Content Container -->
+								<div class="p-8 flex flex-col items-center text-center flex-grow">
+									<h3 class="text-2xl font-serif mb-4 text-gray-800 group-hover:text-teal-600 transition-colors">
+										{service.title}
+									</h3>
+									<p class="text-gray-500 font-light mb-6 line-clamp-3 text-sm leading-relaxed">
+										{service.shortDescription}
+									</p>
+									<a
+										href="/tratamientos"
+										class="text-teal-600 font-medium hover:text-lilac-600 transition-colors mt-auto inline-flex items-center gap-1"
+									>
+										Saber más <span class="text-lg">→</span>
+									</a>
+								</div>
+							</article>
+						);
+					})
+				}
+			</div>
+
+			<div class="text-center mt-12">
+				<a
+					href="/tratamientos"
+					class="inline-flex items-center px-8 py-3 rounded-full border border-lilac-300 text-lilac-600 hover:bg-lilac-50 transition-colors font-medium"
+				>
+					Ver todos los tratamientos
+				</a>
+			</div>
+		</section>
+
+		<section class="py-24 px-6">
+			<div
+				class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center"
+			>
+				<div class="order-2 md:order-1">
+					<span
+						class="text-teal-600 font-medium tracking-widest uppercase text-sm"
+						>Sobre Mí</span
+					>
+					<h2
+						class="text-3xl md:text-4xl font-serif text-gray-800 mt-4 mb-6"
+					>
+						Más de 20 años cuidando de tu bienestar
+					</h2>
+					<p class="text-gray-600 font-light leading-relaxed mb-6">
+						Soy <strong>Cristina Murciano</strong>, terapeuta
+						holística con más de dos décadas de experiencia en el
+						mundo del masaje y las terapias naturales. Mi pasión es
+						acompañarte en tu camino hacia el equilibrio, utilizando
+						técnicas que combinan tradición y conocimiento para
+						ofrecerte un cuidado integral.
+					</p>
+					<p class="text-gray-600 font-light leading-relaxed mb-8">
+						Cada persona es única, por eso adapto cada sesión a tus
+						necesidades específicas, ya sea para aliviar tensiones
+						musculares, mejorar la circulación o trabajar el
+						bienestar emocional.
+					</p>
+					<a
+						href="/sobre-mi"
+						class="inline-flex items-center text-teal-600 font-medium hover:text-lilac-600 transition-colors"
+					>
+						Conoce mi historia completa →
+					</a>
+				</div>
+				<div class="order-1 md:order-2 flex justify-center">
+					<div class="relative w-full max-w-md">
+						<div class="glass-panel p-2 rounded-[2rem] hover:-translate-y-2 transition-all duration-300 group">
+							<div class="w-full aspect-[4/5] rounded-3xl overflow-hidden relative">
+								{
+									images["/src/assets/images/Consulta Biomagnetismo Cristina Murciano.webp"]
+										?.default && (
+										<img
+											src={
+												images[
+													"/src/assets/images/Consulta Biomagnetismo Cristina Murciano.webp"
+												].default.src
+											}
+											alt="Cristina Murciano en consulta"
+											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+										/>
+									)
+								}
+								<div class="absolute inset-0 bg-gradient-to-t from-lilac-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+							</div>
+						</div>
+						
+						
+
+						<div class="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-tr from-teal-200 to-lilac-200 rounded-full blur-2xl opacity-50 -z-10 animate-pulse-slow"></div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!-- Testimonials Preview -->
+		<section class="py-24 px-6 max-w-7xl mx-auto">
+			<div class="text-center mb-16">
+				<span
+					class="text-lilac-600 font-medium tracking-widest uppercase text-sm"
+					>Opiniones</span
+				>
+				<h2 class="text-4xl font-serif text-gray-800 mt-4 mb-6">
+					Lo que dicen mis pacientes
+				</h2>
+				<div
+					class="w-24 h-1 bg-gradient-to-r from-teal-300 to-lilac-300 mx-auto rounded-full"
+				>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{
+					latestReviews.map((review) => (
+						<div class="glass-panel rounded-3xl p-8">
+							<div class="flex items-center gap-4 mb-6">
+								<div class="w-12 h-12 rounded-full bg-lilac-100 flex items-center justify-center text-lilac-600 font-bold text-lg">
+									{review.author.charAt(0).toUpperCase()}
+								</div>
+								<div>
+									<h4 class="font-serif text-gray-900">
+										{review.author}
+									</h4>
+									<span class="text-xs text-gray-400">
+										{review.date}
+									</span>
+								</div>
+							</div>
+							<div class="mb-4 text-lilac-400 text-sm">★★★★★</div>
+							<p class="text-gray-600 font-light text-sm line-clamp-4">
+								"{review.content}"
+							</p>
+						</div>
+					))
+				}
+			</div>
+
+			<div class="text-center mt-12">
+				<a
+					href="/opiniones"
+					class="inline-flex items-center px-8 py-3 rounded-full border border-lilac-300 text-lilac-600 hover:bg-lilac-50 transition-colors font-medium"
+				>
+					Ver todas las opiniones ({reviews.length})
+				</a>
+			</div>
+		</section>
+
+		<!-- Blog Preview -->
+		<section class="py-24 px-6">
+			<div class="max-w-7xl mx-auto">
+				<div class="text-center mb-16">
+					<span
+						class="text-teal-600 font-medium tracking-widest uppercase text-sm"
+						>Blog</span
+					>
+					<h2 class="text-4xl font-serif text-gray-800 mt-4 mb-6">
+						Últimos artículos
+					</h2>
+					<div
+						class="w-24 h-1 bg-gradient-to-r from-teal-300 to-lilac-300 mx-auto rounded-full"
+					>
+					</div>
+				</div>
+
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					{
+						latestPosts.map((post) => {
+							const imageSrc =
+								images[`/src/assets/images/${post.image}`]
+									?.default;
+							return (
+								<a
+									href={`/blog/${post.slug}`}
+									class="group glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-300 block"
+								>
+									<div class="aspect-video bg-gray-200 relative overflow-hidden">
+										{imageSrc && (
+											<img
+												src={imageSrc.src}
+												alt={post.title}
+												class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+											/>
+										)}
+									</div>
+									<div class="p-6">
+										<span class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-2 block">
+											{post.date}
+										</span>
+										<h3 class="text-xl font-serif text-gray-800 mb-2 group-hover:text-lilac-600 transition-colors line-clamp-2">
+											{post.title}
+										</h3>
+										<p class="text-gray-500 font-light text-sm line-clamp-2">
+											{post.excerpt}
+										</p>
+									</div>
+								</a>
+							);
+						})
+					}
+				</div>
+
+				<div class="text-center mt-12">
+					<a
+						href="/blog"
+						class="inline-flex items-center px-8 py-3 rounded-full border border-teal-300 text-teal-600 hover:bg-teal-50 transition-colors font-medium"
+					>
+						Ver todos los artículos
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Local SEO / Location Section -->
+		<section class="py-20 px-6 max-w-4xl mx-auto text-center">
+			<h2 class="text-2xl font-serif text-gray-800 mb-6">
+				Encuéntrame en Monzón
+			</h2>
+			<a
+				href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(content.company.address)}`}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-block text-gray-600 font-medium mb-4 hover:text-teal-600 transition-colors group"
+			>
+				<span class="mr-2 group-hover:scale-110 inline-block transition-transform">📍</span>
+				<strong class="border-b border-transparent group-hover:border-teal-600 transition-colors">
+					{content.company.address}
+				</strong>
+			</a>
+			<p class="text-gray-500 font-light text-sm">
+				Atención con cita previa. Contacta conmigo para reservar tu
+				sesión personalizada.
+			</p>
+		</section>
+	</main>
+
+	<Footer />
+</BaseLayout>

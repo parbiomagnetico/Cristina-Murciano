@@ -1,0 +1,2 @@
+Types: <![CDATA[attachment]]>, <![CDATA[custom_css]]>, <![CDATA[et_header_layout]]>, <![CDATA[et_pb_layout]]>, <![CDATA[et_body_layout]]>, <![CDATA[et_template]]>, <![CDATA[page]]>, <![CDATA[nav_menu_item]]>
+Statuses: <![CDATA[inherit]]>, <![CDATA[publish]]>

@@ -1,0 +1,36 @@
+{
+    "company": {
+        "name": "Cristina Murciano",
+        "title": "Masaje & Bienestar",
+        "email": "hola@cristinamurciano.es",
+        "phone": "+34 600 000 000",
+        "address": "Plaza María Moliner 14, Monzón, 22400"
+    },
+    "navigation": [
+        {
+            "name": "Inicio",
+            "href": "/"
+        },
+        {
+            "name": "Sobre Mí",
+            "href": "/sobre-mi"
+        },
+        {
+            "name": "Tratamientos",
+            "href": "/tratamientos"
+        },
+        {
+            "name": "Opiniones",
+            "href": "/opiniones"
+        },
+        {
+            "name": "Blog",
+            "href": "/blog"
+        }
+    ],
+    "hero": {
+        "title": "Bienestar Holístico",
+        "subtitle": "Reconecta con tu equilibrio natural a través del masaje consciente.",
+        "cta": "Reserva tu Cita"
+    }
+}

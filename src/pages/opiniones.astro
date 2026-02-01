@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import reviews from "../data/reviews.json";
+
+// Sort reviews by date descending
+const sortedReviews = reviews.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+);
+const initialReviewCount = 9;
+const loadIncrement = 9;
+---
+
+<BaseLayout title="Opiniones | Cristina Murciano">
+    <Nav />
+
+    <main class="pt-32 pb-20 px-6">
+        <div class="text-center max-w-4xl mx-auto mb-16">
+            <span
+                class="text-teal-600 font-medium tracking-widest uppercase text-sm"
+                >Testimonios Reales</span
+            >
+            <h1 class="text-5xl font-serif text-gray-800 mt-4 mb-6">
+                Lo que dicen mis <span class="holographic-text">Pacientes</span>
+            </h1>
+            <p class="text-gray-500 font-light text-lg max-w-2xl mx-auto">
+                Historias de recuperación, bienestar y equilibrio natural.
+                Gracias a todos los que habéis confiado en mis manos.
+            </p>
+
+            <div class="mt-8">
+                <a
+                    href="https://g.page/r/YOUR_GOOGLE_ID/review"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white text-gray-800 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 font-medium border border-gray-100"
+                >
+                    <svg
+                        class="w-5 h-5 text-gray-600"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        ><path
+                            d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"
+                        ></path></svg
+                    >
+                    Escribir reseña en Google
+                </a>
+            </div>
+        </div>
+
+        <div
+            id="reviews-grid"
+            class="max-w-7xl mx-auto columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8"
+        >
+            {
+                sortedReviews.map((review, index) => (
+                    <div
+                        class={`break-inside-avoid glass-panel rounded-3xl p-8 hover:bg-white/60 transition-colors duration-300 review-card ${index >= initialReviewCount ? "hidden" : ""}`}
+                    >
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-10 h-10 rounded-full bg-lilac-100 flex items-center justify-center text-lilac-600 font-bold text-lg">
+                                {review.author.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-gray-900 leading-none">
+                                    {review.author}
+                                </h3>
+                                <span class="text-xs text-gray-400 uppercase tracking-wide">
+                                    {review.date}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 text-lilac-400">★★★★★</div>
+
+                        <p class="text-gray-600 font-light leading-relaxed whitespace-pre-line text-sm">
+                            "{review.content}"
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="text-center mt-20">
+            <p id="review-count" class="text-gray-400 text-sm mb-6">
+                Mostrando {Math.min(initialReviewCount, sortedReviews.length)} de
+                {sortedReviews.length} opiniones verificadas
+            </p>
+
+            <button
+                id="load-more-btn"
+                class="inline-flex items-center px-6 py-3 border border-lilac-300 text-lilac-600 rounded-full hover:bg-lilac-50 transition-colors mb-6 cursor-pointer"
+            >
+                Cargar más opiniones
+            </button>
+
+            <div class="block mt-4">
+                <a
+                    href="/"
+                    class="text-teal-600 hover:text-lilac-600 font-medium transition-colors"
+                    >← Volver al inicio</a
+                >
+            </div>
+        </div>
+    </main>
+
+    <script
+        define:vars={{
+            initialReviewCount,
+            loadIncrement,
+            totalReviews: sortedReviews.length,
+        }}
+    >
+        const grid = document.getElementById("reviews-grid");
+        const loadMoreBtn = document.getElementById("load-more-btn");
+        const countLabel = document.getElementById("review-count");
+
+        let visibleCount = initialReviewCount;
+
+        if (visibleCount >= totalReviews) {
+            loadMoreBtn.style.display = "none";
+        }
+
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener("click", () => {
+                const hiddenCards = grid.querySelectorAll(
+                    ".review-card.hidden",
+                );
+
+                let count = 0;
+                for (let i = 0; i < hiddenCards.length; i++) {
+                    if (count >= loadIncrement) break;
+                    hiddenCards[i].classList.remove("hidden");
+                    count++;
+                }
+
+                visibleCount += count;
+
+                // Update label
+                const currentVisible = Math.min(visibleCount, totalReviews);
+                if (countLabel)
+                    countLabel.textContent = `Mostrando ${currentVisible} de ${totalReviews} opiniones verificadas`;
+
+                // Hide button if all shown
+                if (visibleCount >= totalReviews) {
+                    loadMoreBtn.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+    <Footer />
+</BaseLayout>
