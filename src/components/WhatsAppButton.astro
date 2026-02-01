@@ -1,9 +1,11 @@
 ---
-
+import content from "../data/content.json";
+// Remove spaces and symbols for the WhatsApp URL
+const waPhone = content.company.phone.replace(/[^0-9]/g, "");
 ---
 
 <a
-    href="https://wa.me/34600000000"
+    href={`https://wa.me/${waPhone}`}
     target="_blank"
     rel="noopener noreferrer"
     class="fixed bottom-6 right-6 z-50 group flex items-center justify-center"

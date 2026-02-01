@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
+import { Picture } from "astro:assets";
 import posts from "../../data/posts.json";
 const images = import.meta.glob<{ default: ImageMetadata }>(
     "/src/assets/images/*.{png,webp,jpg,jpeg}",
@@ -41,9 +42,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
                         >
                             <div class="aspect-video bg-gray-200 relative overflow-hidden">
                                 {imageSrc && (
-                                    <img
-                                        src={imageSrc.src}
+                                    <Picture
+                                        src={imageSrc}
                                         alt={post.image_alt || post.title}
+                                        formats={["avif", "webp"]}
+                                        widths={[400, 800]}
+                                        sizes="(max-width: 768px) 100vw, 400px"
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
                                 )}

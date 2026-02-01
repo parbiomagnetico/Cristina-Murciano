@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
+import { Picture } from "astro:assets";
 import posts from "../../data/posts.json";
 
 export async function getStaticPaths() {
@@ -39,9 +40,12 @@ const imageSrc = images[`/src/assets/images/${post.image}`]?.default;
             >
                 {
                     imageSrc && (
-                        <img
-                            src={imageSrc.src}
+                        <Picture
+                            src={imageSrc}
                             alt={post.image_alt || post.title}
+                            formats={["avif", "webp"]}
+                            widths={[400, 800, 1200]}
+                            sizes="(max-width: 768px) 100vw, 896px"
                             class="w-full h-full object-cover"
                         />
                     )

@@ -2,9 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { Picture } from "astro:assets";
+import content from "../data/content.json";
 
 import services from '../data/services.json';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{png,jpg,jpeg,webp}', { eager: true });
+const waPhone = content.company.phone.replace(/[^0-9]/g, "");
 ---
 
 <BaseLayout title="Tratamientos | Cristina Murciano">
@@ -26,7 +29,16 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/
                 <article class="glass-panel p-1 rounded-3xl flex flex-col md:flex-row overflow-hidden group hover:shadow-md transition-all">
                     <!-- Image Side -->
                     <div class="w-full md:w-2/5 relative h-64 md:h-auto overflow-hidden rounded-2xl md:rounded-l-2xl md:rounded-r-none">
-                         {imageSrc && <img src={imageSrc.src} alt={service.title} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />}
+                         {imageSrc && (
+                            <Picture 
+                                src={imageSrc} 
+                                alt={service.title} 
+                                formats={['avif', 'webp']}
+                                widths={[400, 800]}
+                                sizes="(max-width: 768px) 100vw, 400px"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                            />
+                         )}
                          <!-- Overlay -->
                          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
@@ -43,7 +55,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/
                             {service.fullDescription}
                         </p>
                         
-                        <a href="https://wa.me/34600000000" target="_blank" class="inline-flex items-center text-sm font-medium text-teal-600 hover:text-lilac-600 transition-colors">
+                        <a href={`https://wa.me/${waPhone}`} target="_blank" class="inline-flex items-center text-sm font-medium text-teal-600 hover:text-lilac-600 transition-colors">
                             Reservar esta sesión
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

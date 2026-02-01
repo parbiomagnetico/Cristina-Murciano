@@ -1,4 +1,5 @@
 ---
+import { Picture } from "astro:assets";
 import content from "../data/content.json";
 import logo from "../assets/images/logo.png";
 
@@ -10,9 +11,12 @@ const links = content.navigation;
         class="glass-panel rounded-full px-8 py-3 flex items-center justify-between gap-8 max-w-4xl w-full"
     >
         <a href="/" class="group flex items-center gap-2">
-            <img
-                src={logo.src}
+            <Picture
+                src={logo}
                 alt="Cristina Murciano Logo"
+                formats={["avif", "webp"]}
+                widths={[100, 200]}
+                sizes="100px"
                 class="h-12 w-auto object-contain hover:scale-105 transition-transform"
             />
             <!-- Fallback text hidden on small screens if logo has text, or kept if logo is icon only. Keeping it hidden for now as logo likely has text -->

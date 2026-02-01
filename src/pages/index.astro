@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Picture } from "astro:assets";
 import Nav from "../components/Nav.astro";
 import EnergyComposition from "../components/EnergyComposition.astro";
 import Footer from "../components/Footer.astro";
@@ -78,9 +79,12 @@ const latestPosts = [...posts]
 								<!-- Image Container -->
 								<div class="w-full h-56 overflow-hidden relative">
 									{imageSrc && (
-										<img
-											src={imageSrc.src}
+										<Picture
+											src={imageSrc}
 											alt={service.title}
+											formats={['avif', 'webp']}
+											widths={[400, 800]}
+											sizes="(max-width: 768px) 100vw, 400px"
 											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 										/>
 									)}
@@ -160,13 +164,16 @@ const latestPosts = [...posts]
 								{
 									images["/src/assets/images/cristina.png"]
 										?.default && (
-										<img
+										<Picture
 											src={
 												images[
 													"/src/assets/images/cristina.png"
-												].default.src
+												].default
 											}
 											alt="Cristina Murciano"
+											formats={['avif', 'webp']}
+											widths={[400, 800]}
+											sizes="(max-width: 768px) 100vw, 500px"
 											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 										/>
 									)
@@ -265,14 +272,17 @@ const latestPosts = [...posts]
 									class="group glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-300 block"
 								>
 									<div class="aspect-video bg-gray-200 relative overflow-hidden">
-										{imageSrc && (
-											<img
-												src={imageSrc.src}
-												alt={post.title}
-												class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-											/>
-										)}
-									</div>
+                                {imageSrc && (
+                                    <Picture
+                                        src={imageSrc}
+                                        alt={post.image_alt || post.title}
+                                        formats={['avif', 'webp']}
+                                        widths={[400, 800]}
+                                        sizes="(max-width: 768px) 100vw, 400px"
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                    />
+                                )}
+                            </div>
 									<div class="p-6">
 										<span class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-2 block">
 											{post.date}
@@ -311,7 +321,7 @@ const latestPosts = [...posts]
 					<div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
 						<div class="text-center md:text-left">
 							<span class="text-xs font-semibold text-teal-600 uppercase tracking-widest mb-3 block">Ubicación</span>
-							<h2 class="text-3xl md:text-4xl font-serif text-gray-800 mb-6">Estamos en el corazón de <br class="hidden md:block"/><span class="text-teal-600 italic">Monzón</span></h2>
+							<h2 class="text-3xl md:text-4xl font-serif text-gray-800 mb-6">Estamos en el corazón de <span class="text-teal-600 italic">Monzón</span></h2>
 							
 							<div class="space-y-6">
 								<div class="flex items-center gap-4 justify-center md:justify-start">
