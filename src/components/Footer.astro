@@ -1,4 +1,5 @@
 ---
+import logoNR from "../assets/images/logo-NRstudio-negro.webp";
 import content from "../data/content.json";
 
 const currentYear = new Date().getFullYear();
@@ -9,17 +10,12 @@ const currentYear = new Date().getFullYear();
 >
     <div class="max-w-4xl mx-auto flex flex-col items-center text-center">
         <!-- NR Studio Logo (Branded) -->
-        <div class="mb-8 group cursor-default">
-            <div
-                class="text-3xl font-bold tracking-tighter leading-none mb-1 text-gray-800 group-hover:text-teal-600 transition-colors"
-            >
-                NR
-            </div>
-            <div
-                class="text-[0.65rem] tracking-[0.4em] uppercase font-light text-gray-500 group-hover:text-lilac-500 transition-colors"
-            >
-                Studio
-            </div>
+        <div class="mb-8 group">
+            <img
+                src={logoNR.src}
+                alt="NR Studio Logo"
+                class="h-8 w-auto hover:scale-105 transition-transform duration-500"
+            />
         </div>
 
         <!-- Copyright & Legal -->
