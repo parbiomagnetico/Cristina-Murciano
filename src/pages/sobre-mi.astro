@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import cristina from "../assets/images/cristina.png";
 ---
 
 <BaseLayout title="Sobre Mí | Cristina Murciano">
@@ -19,7 +20,7 @@ import Footer from "../components/Footer.astro";
                         class="aspect-[3/4] rounded-3xl overflow-hidden glass-panel relative z-10 p-2"
                     >
                         <img
-                            src="/src/assets/images/cristina.png"
+                            src={cristina.src}
                             alt="Cristina Murciano"
                             class="w-full h-full object-cover rounded-2xl"
                         />

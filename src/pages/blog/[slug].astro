@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/images/*.png",
+    "/src/assets/images/*.{png,webp,jpg,jpeg}",
     { eager: true },
 );
 const imageSrc = images[`/src/assets/images/${post.image}`]?.default;

@@ -4,7 +4,7 @@ import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
 import posts from "../../data/posts.json";
 const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/images/*.png",
+    "/src/assets/images/*.{png,webp,jpg,jpeg}",
     { eager: true },
 );
 ---

@@ -1,5 +1,6 @@
 ---
 import content from "../data/content.json";
+import logo from "../assets/images/logo.png";
 
 const links = content.navigation;
 ---
@@ -10,7 +11,7 @@ const links = content.navigation;
     >
         <a href="/" class="group flex items-center gap-2">
             <img
-                src="/src/assets/images/logo.png"
+                src={logo.src}
                 alt="Cristina Murciano Logo"
                 class="h-12 w-auto object-contain hover:scale-105 transition-transform"
             />
