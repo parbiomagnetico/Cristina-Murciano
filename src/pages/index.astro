@@ -9,6 +9,7 @@ import content from "../data/content.json";
 import reviews from "../data/reviews.json";
 import posts from "../data/posts.json";
 
+const waPhone = content.company.phone.replace(/[^0-9]/g, "");
 const images = import.meta.glob<{ default: ImageMetadata }>(
 	"/src/assets/images/*.{png,webp,jpg,jpeg}",
 	{ eager: true },
@@ -85,6 +86,8 @@ const latestPosts = [...posts]
 											formats={['avif', 'webp']}
 											widths={[400, 800]}
 											sizes="(max-width: 768px) 100vw, 400px"
+											loading={services.indexOf(service) === 0 ? "eager" : "lazy"}
+											fetchpriority={services.indexOf(service) === 0 ? "high" : "auto"}
 											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 										/>
 									)}
@@ -276,9 +279,11 @@ const latestPosts = [...posts]
                                     <Picture
                                         src={imageSrc}
                                         alt={post.image_alt || post.title}
-                                        formats={['avif', 'webp']}
+                                        formats={["avif", "webp"]}
                                         widths={[400, 800]}
                                         sizes="(max-width: 768px) 100vw, 400px"
+                                        loading={latestPosts.indexOf(post) === 0 ? "eager" : "lazy"}
+                                        fetchpriority={latestPosts.indexOf(post) === 0 ? "high" : "auto"}
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
                                 )}
@@ -354,7 +359,9 @@ const latestPosts = [...posts]
 									Abrir en Google Maps
 								</a>
 								<a
-									href="#contact"
+									href={`https://wa.me/${waPhone}`}
+									target="_blank"
+									rel="noopener noreferrer"
 									class="px-8 py-3 border border-gray-200 rounded-full font-medium hover:border-teal-400 text-gray-700 transition-all"
 								>
 									Contactar ahora

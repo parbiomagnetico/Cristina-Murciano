@@ -1,14 +1,15 @@
 ---
 import "../styles/global.css";
 // Import fonts directly to allow Astro to optimize their loading
-import "@fontsource/outfit/300.css";
 import "@fontsource/outfit/400.css";
-import "@fontsource/outfit/500.css";
 import "@fontsource/outfit/600.css";
-import "@fontsource/montserrat/300.css";
 import "@fontsource/montserrat/400.css";
-import "@fontsource/montserrat/500.css";
 import "@fontsource/montserrat/600.css";
+
+// Preload the most critical fonts for instant discovery
+import outfit400 from "@fontsource/outfit/files/outfit-latin-400-normal.woff2?url";
+import montserrat600 from "@fontsource/montserrat/files/montserrat-latin-600-normal.woff2?url";
+
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 
 interface Props {
@@ -29,8 +30,23 @@ const {
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Preload critical fonts -->
+		<link
+			rel="preload"
+			href={outfit400}
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href={montserrat600}
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>

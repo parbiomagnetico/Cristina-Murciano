@@ -46,6 +46,8 @@ const imageSrc = images[`/src/assets/images/${post.image}`]?.default;
                             formats={["avif", "webp"]}
                             widths={[400, 800, 1200]}
                             sizes="(max-width: 768px) 100vw, 896px"
+                            loading="eager"
+                            fetchpriority="high"
                             class="w-full h-full object-cover"
                         />
                     )

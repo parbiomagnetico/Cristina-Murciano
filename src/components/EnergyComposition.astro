@@ -1,5 +1,6 @@
 ---
 import content from "../data/content.json";
+const waPhone = content.company.phone.replace(/[^0-9]/g, "");
 ---
 
 <section
@@ -226,7 +227,9 @@ import content from "../data/content.json";
             class="flex flex-col sm:flex-row gap-6 justify-center items-center"
         >
             <a
-                href="#contact"
+                href={`https://wa.me/${waPhone}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="group relative px-8 py-3 bg-gray-900 text-white rounded-full font-medium transition-transform hover:scale-105 overflow-hidden"
             >
                 <span class="relative z-10">{content.hero.cta}</span>

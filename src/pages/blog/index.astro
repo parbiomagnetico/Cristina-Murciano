@@ -48,6 +48,16 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
                                         formats={["avif", "webp"]}
                                         widths={[400, 800]}
                                         sizes="(max-width: 768px) 100vw, 400px"
+                                        loading={
+                                            posts.indexOf(post) === 0
+                                                ? "eager"
+                                                : "lazy"
+                                        }
+                                        fetchpriority={
+                                            posts.indexOf(post) === 0
+                                                ? "high"
+                                                : "auto"
+                                        }
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
                                 )}

@@ -4,6 +4,7 @@ import content from "../data/content.json";
 import logo from "../assets/images/logo.png";
 
 const links = content.navigation;
+const waPhone = content.company.phone.replace(/[^0-9]/g, "");
 ---
 
 <header class="fixed top-0 left-0 w-full z-50 flex justify-center pt-6 px-4">
@@ -38,7 +39,9 @@ const links = content.navigation;
         </div>
 
         <a
-            href="#contact"
+            href={`https://wa.me/${waPhone}`}
+            target="_blank"
+            rel="noopener noreferrer"
             class="hidden md:block bg-teal-200/50 hover:bg-teal-200/80 text-teal-900 px-5 py-2 rounded-full text-sm font-medium transition-all backdrop-blur-sm"
         >
             Reservar
