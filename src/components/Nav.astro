@@ -9,7 +9,7 @@ const waPhone = content.company.phone.replace(/[^0-9]/g, "");
 
 <header class="fixed top-0 left-0 w-full z-50 flex justify-center pt-6 px-4">
     <nav
-        class="glass-panel rounded-full px-8 py-3 flex items-center justify-between gap-8 max-w-4xl w-full"
+        class="glass-panel rounded-full px-8 py-3 flex items-center justify-between gap-8 max-w-4xl w-full relative z-[60]"
     >
         <a href="/" class="group flex items-center gap-2">
             <Picture
@@ -20,7 +20,6 @@ const waPhone = content.company.phone.replace(/[^0-9]/g, "");
                 sizes="100px"
                 class="h-12 w-auto object-contain hover:scale-105 transition-transform"
             />
-            <!-- Fallback text hidden on small screens if logo has text, or kept if logo is icon only. Keeping it hidden for now as logo likely has text -->
             <span class="sr-only">Cristina Murciano</span>
         </a>
 
@@ -47,24 +46,145 @@ const waPhone = content.company.phone.replace(/[^0-9]/g, "");
             Reservar
         </a>
 
-        <!-- Mobile Menu Button (Placeholder) -->
+        <!-- Mobile Menu Button -->
         <button
-            class="md:hidden text-gray-700"
-            aria-label="Abrir menú de navegación"
+            id="mobile-menu-button"
+            class="md:hidden text-gray-700 p-2 rounded-full hover:bg-white/50 transition-all active:scale-95"
+            aria-label="Menú"
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            <div
+                class="w-6 h-5 relative flex flex-col justify-between overflow-hidden"
             >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
+                <span
+                    id="line-1"
+                    class="w-full h-0.5 bg-current transition-all duration-300 origin-left"
+                ></span>
+                <span
+                    id="line-2"
+                    class="w-full h-0.5 bg-current transition-all duration-300"
+                ></span>
+                <span
+                    id="line-3"
+                    class="w-full h-0.5 bg-current transition-all duration-300 origin-left"
+                ></span>
+            </div>
         </button>
     </nav>
+
+    <!-- Full Mobile Menu Overlay -->
+    <div
+        id="mobile-menu-overlay"
+        class="fixed inset-0 z-50 bg-white/95 backdrop-blur-2xl flex flex-col items-center justify-center transform translate-y-[-100%] transition-transform duration-500 ease-in-out md:hidden"
+    >
+        <div class="flex flex-col items-center gap-8">
+            {
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        class="mobile-link text-3xl font-serif text-gray-800 hover:text-teal-600 transition-all opacity-0 translate-y-4"
+                    >
+                        {link.name}
+                    </a>
+                ))
+            }
+            <a
+                href={`https://wa.me/${waPhone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mobile-link bg-teal-600 text-white px-10 py-4 rounded-full text-xl font-medium shadow-xl shadow-teal-900/10 opacity-0 translate-y-4"
+            >
+                Reservar
+            </a>
+        </div>
+    </div>
 </header>
+
+<script>
+    function setupMenu() {
+        const button = document.getElementById(
+            "mobile-menu-button",
+        ) as HTMLElement;
+        const overlay = document.getElementById(
+            "mobile-menu-overlay",
+        ) as HTMLElement;
+        const line1 = document.getElementById("line-1") as HTMLElement;
+        const line2 = document.getElementById("line-2") as HTMLElement;
+        const line3 = document.getElementById("line-3") as HTMLElement;
+        const links = document.querySelectorAll(".mobile-link");
+
+        if (!button || !overlay || !line1 || !line2 || !line3) return;
+
+        let isOpen = false;
+
+        const toggle = () => {
+            isOpen = !isOpen;
+
+            if (isOpen) {
+                overlay.classList.remove("translate-y-[-100%]");
+                overlay.classList.add("translate-y-0");
+
+                // Animate hamburger to X
+                line1.style.transform = "rotate(45deg) translate(2px, -1px)";
+                line2.style.opacity = "0";
+                line2.style.transform = "translateX(20px)";
+                line3.style.transform = "rotate(-45deg) translate(2px, 1px)";
+
+                document.body.style.overflow = "hidden";
+
+                // Animate links
+                links.forEach((link, i) => {
+                    setTimeout(
+                        () => {
+                            link.classList.remove("opacity-0", "translate-y-4");
+                            link.classList.add("opacity-100", "translate-y-0");
+                        },
+                        200 + i * 100,
+                    );
+                });
+            } else {
+                overlay.classList.add("translate-y-[-100%]");
+                overlay.classList.remove("translate-y-0");
+
+                // Reset hamburger
+                line1.style.transform = "none";
+                line2.style.opacity = "1";
+                line2.style.transform = "none";
+                line3.style.transform = "none";
+
+                document.body.style.overflow = "";
+
+                // Reset links animations for next time
+                links.forEach((link) => {
+                    link.classList.add("opacity-0", "translate-y-4");
+                    link.classList.remove("opacity-100", "translate-y-0");
+                });
+            }
+        };
+
+        button.addEventListener("click", toggle);
+
+        // Close on link click
+        links.forEach((link) => {
+            link.addEventListener("click", () => {
+                if (isOpen) toggle();
+            });
+        });
+
+        // Cleanup on destroy (for View Transitions)
+        return () => {
+            button.removeEventListener("click", toggle);
+            document.body.style.overflow = "";
+        };
+    }
+
+    // Initialize
+    let cleanup = setupMenu();
+
+    // Support Astro View Transitions
+    document.addEventListener("astro:before-swap", () => {
+        if (cleanup) cleanup();
+    });
+    document.addEventListener("astro:after-swap", () => {
+        cleanup = setupMenu();
+    });
+</script>
