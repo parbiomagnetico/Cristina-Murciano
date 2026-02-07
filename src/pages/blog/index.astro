@@ -29,74 +29,147 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
         </div>
 
         <div
+            id="blog-grid"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
         >
             {
-                posts.map((post) => {
-                    const imageSrc =
-                        images[`/src/assets/images/${post.image}`]?.default;
-                    return (
-                        <a
-                            href={`/blog/${post.slug}`}
-                            class="group glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-300 block h-full flex flex-col"
-                        >
-                            <div class="aspect-video bg-gray-200 relative overflow-hidden">
-                                {imageSrc && (
-                                    <Picture
-                                        src={imageSrc}
-                                        alt={post.image_alt || post.title}
-                                        formats={["avif", "webp"]}
-                                        widths={[400, 800]}
-                                        sizes="(max-width: 768px) 100vw, 400px"
-                                        loading={
-                                            posts.indexOf(post) === 0
-                                                ? "eager"
-                                                : "lazy"
-                                        }
-                                        fetchpriority={
-                                            posts.indexOf(post) === 0
-                                                ? "high"
-                                                : "auto"
-                                        }
-                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                    />
-                                )}
-                            </div>
-
-                            <div class="p-8 flex flex-col flex-grow">
-                                <span class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3 block">
-                                    {post.date}
-                                </span>
-                                <h2 class="text-2xl font-serif text-gray-800 mb-3 group-hover:text-lilac-600 transition-colors line-clamp-2">
-                                    {post.title}
-                                </h2>
-                                <p class="text-gray-500 font-light mb-6 line-clamp-3 text-sm leading-relaxed flex-grow">
-                                    {post.excerpt}
-                                </p>
-                                <span class="text-sm font-medium text-gray-900 group-hover:text-teal-600 transition-colors flex items-center mt-auto">
-                                    Leer artículo
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                posts
+                    .sort(
+                        (a, b) =>
+                            new Date(b.date).getTime() -
+                            new Date(a.date).getTime(),
+                    )
+                    .map((post, index) => {
+                        const imageSrc =
+                            images[`/src/assets/images/${post.image}`]?.default;
+                        return (
+                            <a
+                                href={`/blog/${post.slug}`}
+                                class={`group glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-300 flex flex-col h-full blog-post-card ${index >= 9 ? "hidden" : ""}`}
+                                data-index={index}
+                            >
+                                <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                                    {imageSrc && (
+                                        <Picture
+                                            src={imageSrc}
+                                            alt={post.image_alt || post.title}
+                                            formats={["avif", "webp"]}
+                                            widths={[400, 800]}
+                                            sizes="(max-width: 768px) 100vw, 400px"
+                                            loading={
+                                                index < 3 ? "eager" : "lazy"
+                                            }
+                                            fetchpriority={
+                                                index < 3 ? "high" : "auto"
+                                            }
+                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                         />
-                                    </svg>
-                                </span>
-                            </div>
-                        </a>
-                    );
-                })
+                                    )}
+                                </div>
+
+                                <div class="p-8 flex flex-col flex-grow">
+                                    <span class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3 block">
+                                        {post.date}
+                                    </span>
+                                    <h2 class="text-2xl font-serif text-gray-800 mb-3 group-hover:text-lilac-600 transition-colors line-clamp-2">
+                                        {post.title}
+                                    </h2>
+                                    <p class="text-gray-500 font-light mb-6 line-clamp-3 text-sm leading-relaxed flex-grow">
+                                        {post.excerpt}
+                                    </p>
+                                    <span class="text-sm font-medium text-gray-900 group-hover:text-teal-600 transition-colors flex items-center mt-auto">
+                                        Leer artículo
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                            />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </a>
+                        );
+                    })
             }
         </div>
+
+        {
+            posts.length > 9 && (
+                <div class="mt-16 text-center">
+                    <p
+                        id="article-count"
+                        class="text-gray-400 text-sm mb-6 font-light"
+                    >
+                        Mostrando 9 de {posts.length} artículos
+                    </p>
+                    <button
+                        id="load-more-btn"
+                        class="px-8 py-4 rounded-full glass-panel border border-teal-200 text-teal-700 font-medium hover:bg-teal-50 transition-all duration-300 shadow-sm"
+                    >
+                        Mostrar más artículos
+                    </button>
+                </div>
+            )
+        }
     </main>
+
+    <script>
+        const loadMoreBtn = document.getElementById("load-more-btn");
+        const countDisplay = document.getElementById("article-count");
+        const cards = document.querySelectorAll(".blog-post-card");
+        const totalArticles = cards.length;
+        const BATCH_SIZE = 9;
+        let currentVisible = 9;
+
+        if (loadMoreBtn && countDisplay) {
+            loadMoreBtn.addEventListener("click", () => {
+                const nextBatch = Array.from(cards).slice(
+                    currentVisible,
+                    currentVisible + BATCH_SIZE,
+                );
+
+                nextBatch.forEach((card) => {
+                    card.classList.remove("hidden");
+                    // Add a small fade-in effect
+                    card.classList.add("animate-fade-in");
+                });
+
+                currentVisible = Math.min(
+                    currentVisible + BATCH_SIZE,
+                    totalArticles,
+                );
+                countDisplay.textContent = `Mostrando ${currentVisible} de ${totalArticles} artículos`;
+
+                if (currentVisible >= totalArticles) {
+                    loadMoreBtn.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
 
     <Footer />
 </BaseLayout>

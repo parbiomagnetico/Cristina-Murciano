@@ -18,9 +18,29 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     { eager: true },
 );
 const imageSrc = images[`/src/assets/images/${post.image}`]?.default;
+const ogImage = imageSrc ? imageSrc.src : undefined;
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    image: ogImage ? new URL(ogImage, Astro.url).href : undefined,
+    datePublished: post.date, // Assuming YYYY-MM-DD or similar standard format, otherwise might need parsing
+    author: {
+        "@type": "Person",
+        name: "Cristina Murciano",
+        url: Astro.site,
+    },
+    description: post.excerpt,
+};
 ---
 
-<BaseLayout title={`${post.title} | Blog`}>
+<BaseLayout
+    title={`${post.title} | Blog`}
+    description={post.excerpt}
+    image={ogImage}
+>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     <Nav />
 
     <article class="pt-32 pb-20 px-6 max-w-4xl mx-auto">

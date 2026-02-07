@@ -13,12 +13,12 @@
             "href": "/"
         },
         {
-            "name": "Sobre Mí",
-            "href": "/sobre-mi"
-        },
-        {
             "name": "Tratamientos",
             "href": "/tratamientos"
+        },
+        {
+            "name": "Sobre Mí",
+            "href": "/sobre-mi"
         },
         {
             "name": "Opiniones",
