@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-sans: 'Outfit', sans-serif;
@@ -122,17 +123,6 @@
     cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.5 2.5C2.5 2.5 18 6 22 14C25 20 22 28 16 28C10 28 4 20 2.5 2.5Z' fill='%232DD4BF' fill-opacity='0.9' stroke='%23115E59' stroke-width='1.5'/%3E%3C/svg%3E") 2 2, auto;
   }
 
-  /* Interactive Cursor - Lilac Leaf for Links */
-  a,
-  button,
-  [role="button"],
-  .cursor-pointer,
-  input[type="submit"],
-  input[type="button"],
-  summary {
-    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.5 2.5C2.5 2.5 18 6 22 14C25 20 22 28 16 28C10 28 4 20 2.5 2.5Z' fill='%23A78BFA' fill-opacity='0.9' stroke='%23581C87' stroke-width='1.5'/%3E%3C/svg%3E") 2 2, pointer;
-  }
-
   h1,
   h2,
   h3,
@@ -144,6 +134,18 @@
 }
 
 @layer utilities {
+
+  /* Interactive Cursor - Lilac Leaf for Links - Overrides default cursor-pointer */
+  a,
+  button,
+  [role="button"],
+  .cursor-pointer,
+  input[type="submit"],
+  input[type="button"],
+  summary {
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.5 2.5C2.5 2.5 18 6 22 14C25 20 22 28 16 28C10 28 4 20 2.5 2.5Z' fill='%23A78BFA' fill-opacity='0.9' stroke='%23581C87' stroke-width='1.5'/%3E%3C/svg%3E") 2 2, pointer !important;
+  }
+
   .text-balance {
     text-wrap: balance;
   }
@@ -156,11 +158,21 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-lilac-500 to-gold-400 animate-gradient-x bg-[length:200%_auto];
   }
 
-  /* Entrance Animation Utility */
-  @keyframes reveal {
+  /* --- Reveal Animations (Scroll Timeline) Optimized --- */
+  .reveal {
+    view-timeline-name: --section;
+    view-timeline-axis: block;
+    animation: reveal-scroll both;
+    animation-timeline: --section;
+    animation-range: entry 10% cover 30%;
+    will-change: transform, opacity;
+  }
+
+  @keyframes reveal-scroll {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(40px);
+      /* Lighter displacement */
     }
 
     to {
@@ -169,23 +181,31 @@
     }
   }
 
-  .reveal {
-    view-timeline-name: --section;
-    view-timeline-axis: block;
-    animation: reveal-scroll both;
-    animation-timeline: --section;
-    animation-range: entry 10% cover 30%;
+  /* Specific Reveal for Headings (Fast and clean) */
+  .reveal-heading {
+    animation-range: entry 15% cover 35%;
   }
 
-  @keyframes reveal-scroll {
-    from {
-      opacity: 0;
-      transform: translateY(40px) scale(0.95);
-    }
+  /* JS Fallback / Compatibility (Fast and clean) */
+  .reveal-js {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
 
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+  .reveal-js.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* View Transitions - Simple & Fast */
+  ::view-transition-old(root) {
+    animation: 0.3s ease-out both fade-out;
+  }
+
+  ::view-transition-new(root) {
+    animation: 0.4s ease-in both fade-in;
   }
 }

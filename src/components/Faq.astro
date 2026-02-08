@@ -1,0 +1,131 @@
+---
+const faqs = [
+    {
+        question: "¿Qué ropa debo llevar para el masaje?",
+        answer: "Lo ideal es que vengas con ropa cómoda. En la consulta disponemos de toallas y todo lo necesario para tu confort y privacidad durante el tratamiento. Si vienes a una sesión de masaje muscular u otras técnicas manuales, trabajaremos directamente sobre la piel con aceites naturales.",
+    },
+    {
+        question: "¿Es normal sentir alguna molestia después de la sesión?",
+        answer: "Sí, es totalmente normal. Tras un masaje profundo o una sesión de reequilibrio, el cuerpo puede experimentar lo que llamamos 'crisis curativa' durante las primeras 24-48 horas, lo cual es señal de que el organismo está procesando los cambios y eliminando toxinas.",
+    },
+    {
+        question: "¿Qué métodos de pago aceptas?",
+        answer: "Acepto pagos en efectivo y a través de Bizum al finalizar la sesión.",
+    },
+    {
+        question: "¿Hay facilidad de aparcamiento cerca de la consulta?",
+        answer: "Sí, suele haber mucho sitio disponible para aparcar en la calle Baltasar Gracián, situada muy cerca de la consulta.",
+    },
+];
+---
+
+<section class="py-12 px-6 relative z-10" id="faq-section">
+    <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-8">
+            <h2
+                class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4"
+            >
+                DUDAS FRECUENTES
+            </h2>
+            <h3 class="text-4xl font-serif text-gray-800">
+                Preguntas que pueden <span class="holographic-text"
+                    >ayudarte</span
+                >
+            </h3>
+        </div>
+
+        <div class="space-y-4">
+            {
+                faqs.map((faq) => (
+                    <details class="faq-accordion-item group glass-panel rounded-2xl border border-white/40 overflow-hidden relative z-20">
+                        <summary class="cursor-pointer w-full px-8 py-6 text-left flex justify-between items-center outline-none select-none hover:bg-white/50 transition-colors pointer-events-auto">
+                            <span class="text-lg font-serif text-gray-800 group-open:text-teal-600 transition-colors pointer-events-none">
+                                {faq.question}
+                            </span>
+                            <span class="text-teal-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0 ml-4 pointer-events-none">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    />
+                                </svg>
+                            </span>
+                        </summary>
+                        <div class="px-8 pb-8 text-gray-600 font-light leading-relaxed bg-white/30">
+                            {faq.answer}
+                        </div>
+                    </details>
+                ))
+            }
+        </div>
+
+        <div class="text-center mt-2">
+            <a
+                href="/faq"
+                class="inline-flex items-center px-8 py-3 rounded-full border border-teal-300 text-teal-600 hover:bg-teal-50 transition-colors font-medium"
+            >
+                Ver todas las preguntas frecuentes
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Reset summary default styling */
+    summary {
+        list-style: none;
+        display: flex !important;
+    }
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    /* Ensure content is strictly hidden when details is closed */
+    details:not([open]) > *:not(summary) {
+        display: none !important;
+    }
+
+    /* Professional highlight when open */
+    details[open] {
+        border-color: rgba(45, 212, 191, 0.4);
+        box-shadow: 0 10px 30px -10px rgba(45, 212, 191, 0.1);
+    }
+</style>
+
+<script is:inline>
+    // Logic to only allow one FAQ open at a time
+    (function () {
+        function setupFaqAutoClose() {
+            const details = document.querySelectorAll(".faq-accordion-item");
+            details.forEach((target) => {
+                target.addEventListener("click", (e) => {
+                    // Stop event if needed? No, let summary toggle naturally.
+                    // If clicking the summary
+                    if (e.target.closest("summary")) {
+                        // If it's ALREADY open, it will close naturally
+                        if (target.hasAttribute("open")) return;
+
+                        // Close others
+                        details.forEach((other) => {
+                            if (other !== target) other.removeAttribute("open");
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initial setup
+        setupFaqAutoClose();
+
+        // Handle Astro View Transitions
+        document.addEventListener("astro:page-load", setupFaqAutoClose);
+    })();
+</script>

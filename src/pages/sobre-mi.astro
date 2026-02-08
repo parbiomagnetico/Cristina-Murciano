@@ -4,141 +4,493 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { Picture } from "astro:assets";
 import cristina from "../assets/images/cristina.png";
+import blogHands from "../assets/images/blog-hands.png";
 ---
 
-<BaseLayout title="Sobre Mí | Cristina Murciano">
+<BaseLayout
+    title="Cristina Murciano | Masajista y Terapeuta en Monzón"
+    description="Conoce a Cristina Murciano, masajista profesional en Monzón. Más de 10 años ayudando a personas a recuperar su salud a través del masaje y terapias holísticas."
+>
     <Nav />
 
     <main class="pt-32 pb-20 px-6">
         <!-- Intro Section -->
 
-        <section class="max-w-5xl mx-auto mb-24">
-            <div class="flex flex-col md:flex-row items-start gap-12">
-                <!-- Image Placeholder (Glass Frame) -->
-                <div class="w-full md:w-1/2 relative top-0 md:-mt-8">
-                    <!-- Added negative margin to pull image up slightly if needed, or just align top -->
+        <section id="sobre-mi-intro" class="py-12 px-6 reveal">
+            <div class="max-w-6xl mx-auto">
+                <div
+                    class="glass-panel rounded-[3.5rem] overflow-hidden relative group"
+                >
+                    <!-- Decorative Background Elements -->
                     <div
-                        class="aspect-[3/4] rounded-3xl overflow-hidden glass-panel relative z-10 p-2"
-                    >
-                        <Picture
-                            src={cristina}
-                            alt="Cristina Murciano"
-                            formats={["avif", "webp"]}
-                            widths={[400, 800]}
-                            sizes="(max-width: 768px) 100vw, 500px"
-                            loading="eager"
-                            fetchpriority="high"
-                            class="w-full h-full object-cover rounded-2xl"
-                        />
-                    </div>
-                    <!-- Decorative Orb behind image -->
-                    <div
-                        class="absolute -top-10 -left-10 w-40 h-40 bg-lilac-300 rounded-full blur-[60px] opacity-60 animate-float"
+                        class="absolute top-0 left-0 w-96 h-96 bg-teal-100/20 rounded-full blur-[100px] -z-10 group-hover:scale-110 transition-transform duration-1000"
                     >
                     </div>
-                </div>
+                    <div
+                        class="absolute bottom-0 right-0 w-64 h-64 bg-lilac-100/20 rounded-full blur-[80px] -z-10"
+                    >
+                    </div>
 
-                <div class="w-full md:w-1/2 space-y-6">
-                    <span
-                        class="text-teal-600 font-medium tracking-widest uppercase text-sm"
-                        >Mi Historia</span
-                    >
-                    <h1 class="text-5xl font-serif text-gray-800">
-                        Pasión por el <span class="holographic-text"
-                            >Bienestar</span
+                    <div class="grid md:grid-cols-2 gap-0">
+                        <!-- Image Side -->
+                        <div
+                            class="relative h-96 md:h-auto overflow-hidden order-1"
                         >
-                    </h1>
-                    <div
-                        class="space-y-4 text-gray-600 font-light leading-relaxed text-lg"
-                    >
-                        <p>
-                            Hola, soy Cristina. Mi viaje hacia el mundo de las
-                            terapias holísticas comenzó con una simple búsqueda:
-                            entender cómo nuestro cuerpo y mente están
-                            intrínsecamente conectados.
-                        </p>
-                        <p>
-                            Con más de 10 años de experiencia, he desarrollado
-                            un método propio que combina la precisión técnica
-                            del masaje terapéutico con la sensibilidad
-                            energética. No solo trato el dolor físico, sino que
-                            busco devolver el equilibrio a todo tu ser.
-                        </p>
-                        <p>
-                            Mi consulta en Monzón es un santuario diseñado para
-                            que, al entrar, el mundo exterior desaparezca y solo
-                            existas tú y tu momento de calma.
-                        </p>
-                    </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent z-10 hidden md:block"
+                            >
+                            </div>
+                            <Picture
+                                src={cristina}
+                                alt="Cristina Murciano"
+                                formats={["avif", "webp"]}
+                                widths={[400, 800]}
+                                sizes="(max-width: 768px) 100vw, 600px"
+                                loading="eager"
+                                fetchpriority="high"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                            />
+                        </div>
 
-                    <img
-                        src="/signature.png"
-                        alt="Firma Cristina"
-                        class="h-16 opacity-60 mt-4"
-                        onerror="this.style.display='none'"
-                    />
+                        <!-- Content Side -->
+                        <div
+                            class="p-10 md:p-16 flex flex-col justify-center order-2"
+                        >
+                            <h1
+                                class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4"
+                            >
+                                Mi Historia
+                            </h1>
+                            <h2
+                                class="text-4xl md:text-5xl font-serif text-gray-800 mb-6"
+                            >
+                                Pasión por el <span
+                                    class="holographic-text normal-case"
+                                    >bienestar</span
+                                >
+                            </h2>
+                            <div
+                                class="space-y-4 text-gray-600 font-light leading-relaxed text-lg mb-8"
+                            >
+                                <p>
+                                    Hola, soy Cristina. Mi viaje hacia el mundo
+                                    de las terapias holísticas comenzó con una
+                                    simple búsqueda: entender cómo nuestro
+                                    cuerpo y mente están intrínsecamente
+                                    conectados.
+                                </p>
+                                <p>
+                                    Con más de <strong
+                                        >20 años de experiencia</strong
+                                    >, he desarrollado un método propio que
+                                    combina la precisión técnica del masaje
+                                    terapéutico con la sensibilidad energética.
+                                    No solo trato el dolor físico, sino que
+                                    busco devolver el equilibrio a todo tu ser.
+                                </p>
+                                <p>
+                                    Mi consulta en Monzón es un santuario
+                                    diseñado para que, al entrar, el mundo
+                                    exterior desaparezca y solo existas tú y tu
+                                    momento de calma. Por mi ubicación, recibo
+                                    frecuentemente a clientes no solo de <strong
+                                        >Monzón</strong
+                                    >, sino también de <strong>Barbastro</strong
+                                    >, <strong>Binéfar</strong>, <strong
+                                        >Alcolea</strong
+                                    > y otras poblaciones del Cinca Medio y el Somontano.
+                                </p>
+                            </div>
+
+                            <img
+                                src="/signature.png"
+                                alt="Firma Cristina"
+                                class="h-16 opacity-60 self-start"
+                                onerror="this.style.display='none'"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Philosophy Grid -->
-        <section class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-serif text-center mb-16 text-gray-800">
-                Mi Filosofía
-            </h2>
+        <section class="max-w-7xl mx-auto mb-24 reveal px-6">
+            <div class="text-center mb-16">
+                <span
+                    class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4 block"
+                    >Valores</span
+                >
+                <h2
+                    class="text-4xl md:text-5xl font-serif text-gray-800 leading-tight"
+                >
+                    Mi <span class="holographic-text normal-case"
+                        >filosofía</span
+                    >
+                </h2>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Origen Natural -->
                 <div
-                    class="glass-panel p-8 rounded-2xl text-center hover:bg-white/80 transition-colors"
+                    class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 group flex flex-col items-center text-center"
                 >
                     <div
-                        class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl"
+                        class="relative w-32 h-32 mb-6 flex items-center justify-center"
                     >
-                        🌿
+                        <div
+                            class="absolute inset-0 bg-teal-200/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-1000"
+                        >
+                        </div>
+                        <svg
+                            viewBox="0 0 100 100"
+                            class="relative w-24 h-24 drop-shadow-xl filter brightness-110"
+                        >
+                            <defs>
+                                <linearGradient
+                                    id="grad_final"
+                                    x1="0%"
+                                    y1="0%"
+                                    x2="100%"
+                                    y2="100%"
+                                >
+                                    <stop offset="0%" stop-color="#0d9488"
+                                    ></stop>
+                                    <stop offset="100%" stop-color="#9333ea"
+                                    ></stop>
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M50 85 C 30 65, 20 40, 50 15 C 80 40, 70 65, 50 85 Z"
+                                fill="url(#grad_final)"
+                                class="animate-sway origin-bottom"
+                                opacity="0.95"></path>
+                            <path
+                                d="M50 85 L 50 35"
+                                stroke="white"
+                                stroke-width="1"
+                                stroke-linecap="round"
+                                opacity="0.7"></path>
+                            <path
+                                d="M50 65 Q 60 60, 65 50"
+                                fill="none"
+                                stroke="white"
+                                stroke-width="1"
+                                stroke-linecap="round"
+                                opacity="0.5"></path>
+                            <path
+                                d="M50 55 Q 40 50, 35 40"
+                                fill="none"
+                                stroke="white"
+                                stroke-width="1"
+                                stroke-linecap="round"
+                                opacity="0.5"></path>
+                        </svg>
                     </div>
-                    <h3 class="text-xl font-serif mb-3 text-gray-900">
+                    <h3
+                        class="text-2xl font-serif text-gray-900 mb-4 group-hover:text-teal-600 transition-colors"
+                    >
                         Origen Natural
                     </h3>
-                    <p class="text-gray-500 font-light">
+                    <p class="text-gray-600 font-light leading-relaxed text-sm">
                         Utilizo exclusivamente aceites y productos 100%
-                        orgánicos, respetuosos con tu piel y con el medio
-                        ambiente.
+                        orgánicos, respetuosos con tu piel y el medio ambiente.
                     </p>
                 </div>
+
+                <!-- Energía Continua -->
                 <div
-                    class="glass-panel p-8 rounded-2xl text-center hover:bg-white/80 transition-colors"
+                    class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 group flex flex-col items-center text-center"
                 >
                     <div
-                        class="w-16 h-16 bg-lilac-50 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl"
+                        class="relative w-32 h-32 mb-6 flex items-center justify-center"
                     >
-                        ✨
+                        <div
+                            class="absolute inset-0 bg-lilac-200/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-1000"
+                        >
+                        </div>
+                        <svg
+                            viewBox="0 0 100 100"
+                            class="relative w-24 h-24 drop-shadow-xl filter brightness-110"
+                        >
+                            <circle
+                                cx="50"
+                                cy="50"
+                                r="38"
+                                fill="none"
+                                stroke="url(#grad_final)"
+                                stroke-width="2.5"
+                                stroke-dasharray="240"
+                                stroke-dashoffset="0"
+                                class="animate-draw-loop"></circle>
+                            <circle
+                                cx="50"
+                                cy="50"
+                                r="28"
+                                fill="none"
+                                stroke="url(#grad_final)"
+                                stroke-width="1.2"
+                                stroke-dasharray="180"
+                                stroke-dashoffset="0"
+                                class="animate-draw-loop-reverse"
+                                opacity="0.5"></circle>
+                            <circle
+                                cx="50"
+                                cy="50"
+                                r="5"
+                                fill="url(#grad_final)"
+                                class="animate-pulse"></circle>
+                        </svg>
                     </div>
-                    <h3 class="text-xl font-serif mb-3 text-gray-900">
+                    <h3
+                        class="text-2xl font-serif text-gray-900 mb-4 group-hover:text-lilac-600 transition-colors"
+                    >
                         Energía Continua
                     </h3>
-                    <p class="text-gray-500 font-light">
+                    <p class="text-gray-600 font-light leading-relaxed text-sm">
                         Cada sesión es un flujo constante. Entiendo el cuerpo
                         como un todo, no como partes aisladas a reparar.
                     </p>
                 </div>
+
+                <!-- Atención Plena -->
                 <div
-                    class="glass-panel p-8 rounded-2xl text-center hover:bg-white/80 transition-colors"
+                    class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 group flex flex-col items-center text-center"
                 >
                     <div
-                        class="w-16 h-16 bg-gold-50 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl"
+                        class="relative w-32 h-32 mb-6 flex items-center justify-center"
                     >
-                        🧘‍♀️
+                        <div
+                            class="absolute inset-0 bg-gold-200/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-1000"
+                        >
+                        </div>
+                        <svg
+                            viewBox="0 0 100 100"
+                            class="relative w-24 h-24 drop-shadow-xl filter brightness-110"
+                        >
+                            <ellipse
+                                cx="50"
+                                cy="80"
+                                rx="32"
+                                ry="10"
+                                fill="url(#grad_final)"
+                                opacity="0.2"
+                                class="animate-pulse-slow"></ellipse>
+                            <path
+                                d="M50 20 L 50 50"
+                                stroke="url(#grad_final)"
+                                stroke-width="3"
+                                stroke-linecap="round"
+                                class="animate-drop"></path>
+                            <circle
+                                cx="50"
+                                cy="80"
+                                r="0"
+                                fill="none"
+                                stroke="url(#grad_final)"
+                                stroke-width="2"
+                                class="animate-ripple"></circle>
+                            <circle
+                                cx="50"
+                                cy="80"
+                                r="0"
+                                fill="none"
+                                stroke="url(#grad_final)"
+                                stroke-width="1"
+                                class="animate-ripple-delayed"></circle>
+                        </svg>
                     </div>
-                    <h3 class="text-xl font-serif mb-3 text-gray-900">
+                    <h3
+                        class="text-2xl font-serif text-gray-900 mb-4 group-hover:text-gold-600 transition-colors"
+                    >
                         Atención Plena
                     </h3>
-                    <p class="text-gray-500 font-light">
-                        Escucha activa antes, durante y después del tratamiento.
-                        Tu feedback guía mis manos.
+                    <p class="text-gray-600 font-light leading-relaxed text-sm">
+                        No hay prisas ni protocolos rígidos. Escucho lo que tu
+                        cuerpo necesita aquí y ahora.
                     </p>
                 </div>
             </div>
         </section>
-    </main>
 
-    <Footer />
+        <!-- Authority & Commitment Section -->
+        <section class="max-w-6xl mx-auto mb-24 reveal px-6">
+            <div
+                class="glass-panel rounded-[3.5rem] relative overflow-hidden group"
+            >
+                <!-- Decorative Orbs -->
+                <div
+                    class="absolute -top-24 -right-24 w-64 h-64 bg-teal-100/30 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-1000"
+                >
+                </div>
+                <div
+                    class="absolute -bottom-24 -left-24 w-64 h-64 bg-lilac-100/30 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-1000"
+                >
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-0">
+                    <!-- Text Side (Left) -->
+                    <div
+                        class="p-10 md:p-16 flex flex-col justify-center order-2 md:order-1"
+                    >
+                        <span
+                            class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4 block"
+                            >Trayectoria</span
+                        >
+                        <h2
+                            class="text-4xl md:text-5xl font-serif text-gray-800 mb-8 leading-tight"
+                        >
+                            Evolución y <span
+                                class="holographic-text normal-case"
+                                >compromiso</span
+                            >
+                        </h2>
+
+                        <div
+                            class="space-y-6 text-gray-600 font-light leading-relaxed text-lg mb-10"
+                        >
+                            <p>
+                                Mi trayectoria no se mide solo en años, sino en
+                                la evolución constante de mi técnica. Lo que
+                                comenzó como una formación sólida en <strong
+                                    >Quiromasaje</strong
+                                >, se ha ido enriqueciendo con estudios
+                                profundos en <strong
+                                    >Osteopatía Craneosacral</strong
+                                >, <strong>Drenaje Linfático</strong>
+                                y técnicas energéticas.
+                            </p>
+                            <p>
+                                Entiendo mi profesión como un aprendizaje que
+                                nunca termina, buscando siempre integrar la
+                                sabiduría tradicional con los conocimientos
+                                modernos del bienestar.
+                            </p>
+                        </div>
+
+                        <!-- Stats Grid -->
+                        <div
+                            class="grid grid-cols-3 gap-4 pt-8 border-t border-teal-50/50"
+                        >
+                            <div class="text-center">
+                                <div
+                                    class="text-3xl md:text-4xl font-serif text-teal-600 mb-1"
+                                >
+                                    +20
+                                </div>
+                                <div
+                                    class="text-[0.6rem] uppercase tracking-widest text-gray-400 font-bold"
+                                >
+                                    Años exp.
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div
+                                    class="text-3xl md:text-4xl font-serif text-lilac-600 mb-1"
+                                >
+                                    +10k
+                                </div>
+                                <div
+                                    class="text-[0.6rem] uppercase tracking-widest text-gray-400 font-bold"
+                                >
+                                    Sesiones
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div
+                                    class="text-3xl md:text-4xl font-serif text-gold-500 mb-1"
+                                >
+                                    100%
+                                </div>
+                                <div
+                                    class="text-[0.6rem] uppercase tracking-widest text-gray-400 font-bold"
+                                >
+                                    Holístico
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Side (Right) -->
+                    <div
+                        class="relative h-96 md:h-auto overflow-hidden order-1 md:order-2"
+                    >
+                        <div
+                            class="absolute inset-0 bg-gradient-to-l from-transparent to-white/20 z-10 hidden md:block"
+                        >
+                        </div>
+                        <Picture
+                            src={blogHands}
+                            alt="Masaje terapéutico detalle"
+                            formats={["avif", "webp"]}
+                            widths={[600, 1200]}
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]"
+                        />
+                        <div
+                            class="absolute inset-0 bg-teal-900/10 group-hover:bg-transparent transition-colors duration-700"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </BaseLayout>
+
+<Footer />
+
+<style>
+    .animate-sway {
+        animation: sway 4s ease-in-out infinite;
+    }
+    @keyframes sway {
+        0%,
+        100% {
+            transform: rotate(-5deg);
+        }
+        50% {
+            transform: rotate(5deg);
+        }
+    }
+
+    .animate-draw-loop {
+        animation: draw-loop 10s linear infinite;
+    }
+    @keyframes draw-loop {
+        0% {
+            stroke-dashoffset: 440;
+        }
+        100% {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    .animate-draw-loop-reverse {
+        animation: draw-loop-reverse 15s linear infinite;
+    }
+    @keyframes draw-loop-reverse {
+        0% {
+            stroke-dashoffset: -320;
+        }
+        100% {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    .animate-float {
+        animation: float 5s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+        animation: float 5.5s ease-in-out infinite reverse;
+    }
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-4px);
+        }
+    }
+</style>

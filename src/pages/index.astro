@@ -3,11 +3,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { Picture } from "astro:assets";
 import Nav from "../components/Nav.astro";
 import EnergyComposition from "../components/EnergyComposition.astro";
+import TrustBar from "../components/TrustBar.astro";
+import GiftVoucher from "../components/GiftVoucher.astro";
+import Faq from "../components/Faq.astro";
 import Footer from "../components/Footer.astro";
-import services from "../data/services.json";
 import content from "../data/content.json";
 import reviews from "../data/reviews.json";
-import posts from "../data/posts.json";
+import { getCollection } from "astro:content";
+
+const allServices = await getCollection("services");
+const services = allServices.map((s) => ({
+	id: s.slug,
+	...s.data,
+}));
 
 const waPhone = content.company.phone.replace(/[^0-9]/g, "");
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -21,193 +29,299 @@ const latestReviews = [...reviews]
 	.slice(0, 3);
 
 // Get latest 3 blog posts (sorted by date desc)
-const latestPosts = [...posts]
-	.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+const allPosts = await getCollection("blog", ({ data }) => {
+	return data.active !== false;
+});
+const latestPosts = allPosts
+	.sort(
+		(a, b) =>
+			new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+	)
 	.slice(0, 3);
 ---
 
 <BaseLayout
-	title={`Masajes y Terapias Holísticas en Monzón | ${content.company.name}`}
+	title={`Masajes en Monzón y Terapias Naturales | ${content.company.name}`}
+	description="Masajes terapéuticos y relajantes en Monzón. Recupera tu bienestar con Cristina Murciano: masajista experta en técnicas naturales, par biomagnético y Reiki."
 >
 	<Nav />
 
 	<main>
 		<EnergyComposition />
+		<TrustBar />
 
 		<!-- Intro Section with SEO Keywords -->
-		<section class="pt-12 pb-8 px-6 max-w-4xl mx-auto text-center reveal">
-			<h2 class="text-4xl md:text-5xl font-serif text-gray-800 mt-4 mb-6">
-				Terapias Naturales y <span class="holographic-text"
-					>Masajes</span
-				> en Monzón
-			</h2>
-			<p
-				class="text-gray-600 font-light text-lg leading-relaxed max-w-3xl mx-auto"
-			>
-				Bienvenido/a a mi espacio de bienestar en <strong
-					>Monzón (Huesca)</strong
-				>. Ofrezco tratamientos personalizados de <strong
-					>masaje terapéutico</strong
-				>, <strong>reflexología podal</strong>, <strong
-					>drenaje linfático</strong
-				> y terapias holísticas como el <strong>par biomagnético</strong
-				> y <strong>Reiki</strong>. Mi objetivo es ayudarte a recuperar
-				el equilibrio físico y emocional a través de técnicas naturales
-				adaptadas a tus necesidades.
-			</p>
-		</section>
-
-		<!-- Services Section -->
-		<section class="py-12 px-6 max-w-7xl mx-auto reveal">
-			<div class="text-center mb-16">
-				<h2 class="text-4xl font-serif text-gray-800 mb-6">
-					Mis Tratamientos
-				</h2>
-				<div
-					class="w-24 h-1 bg-gradient-to-r from-teal-300 to-lilac-300 mx-auto rounded-full"
-				>
-				</div>
-			</div>
-
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-				{
-					services.slice(0, 3).map((service) => {
-						const imageSrc =
-							images[`/src/assets/images/${service.image}`]
-								?.default;
-						return (
-							<article class="glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 cursor-pointer group flex flex-col transition-all duration-300">
-								<!-- Image Container -->
-								<div class="w-full h-56 overflow-hidden relative">
-									{imageSrc && (
-										<Picture
-											src={imageSrc}
-											alt={service.title}
-											formats={['avif', 'webp']}
-											widths={[400, 800]}
-											sizes="(max-width: 768px) 100vw, 400px"
-											loading={services.indexOf(service) === 0 ? "eager" : "lazy"}
-											fetchpriority={services.indexOf(service) === 0 ? "high" : "auto"}
-											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-										/>
-									)}
-									<div class="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-								</div>
-								
-								<!-- Content Container -->
-								<div class="p-8 flex flex-col items-center text-center flex-grow">
-									<h3 class="text-2xl font-serif mb-4 text-gray-800 group-hover:text-teal-600 transition-colors">
-										{service.title}
-									</h3>
-									<p class="text-gray-500 font-light mb-6 line-clamp-3 text-sm leading-relaxed">
-										{service.shortDescription}
-									</p>
-									<a
-										href="/tratamientos"
-										class="text-teal-600 font-medium hover:text-lilac-600 transition-colors mt-auto inline-flex items-center gap-1"
-									>
-										Saber más <span class="text-lg">→</span>
-									</a>
-								</div>
-							</article>
-						);
-					})
-				}
-			</div>
-
-			<div class="text-center mt-12">
-				<a
-					href="/tratamientos"
-					class="inline-flex items-center px-8 py-3 rounded-full border border-lilac-300 text-lilac-600 hover:bg-lilac-50 transition-colors font-medium"
-				>
-					Ver todos los tratamientos
-				</a>
-			</div>
-		</section>
-
 		<section class="py-12 px-6 reveal">
-			<div
-				class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center"
-			>
-				<div class="order-2 md:order-1">
-					<span
-						class="text-teal-600 font-medium tracking-widest uppercase text-sm"
-						>Sobre Mí</span
+			<div class="max-w-6xl mx-auto">
+				<div
+					class="glass-panel rounded-[3.5rem] overflow-hidden relative group"
+				>
+					<!-- Decorative Background Elements -->
+					<div
+						class="absolute top-0 right-0 w-96 h-96 bg-teal-100/20 rounded-full blur-[100px] -z-10 group-hover:scale-110 transition-transform duration-1000"
 					>
-					<h2
-						class="text-3xl md:text-4xl font-serif text-gray-800 mt-4 mb-6"
+					</div>
+					<div
+						class="absolute bottom-0 left-0 w-64 h-64 bg-lilac-100/20 rounded-full blur-[80px] -z-10"
 					>
-						Más de 20 años cuidando de tu bienestar
-					</h2>
-					<p class="text-gray-600 font-light leading-relaxed mb-6">
-						Soy <strong>Cristina Murciano</strong>, terapeuta
-						holística con más de dos décadas de experiencia en el
-						mundo del masaje y las terapias naturales. Mi pasión es
-						acompañarte en tu camino hacia el equilibrio, utilizando
-						técnicas que combinan tradición y conocimiento para
-						ofrecerte un cuidado integral.
-					</p>
-					<p class="text-gray-600 font-light leading-relaxed mb-8">
-						Cada persona es única, por eso adapto cada sesión a tus
-						necesidades específicas, ya sea para aliviar tensiones
-						musculares, mejorar la circulación o trabajar el
-						bienestar emocional.
-					</p>
-					<a
-						href="/sobre-mi"
-						class="inline-flex items-center text-teal-600 font-medium hover:text-lilac-600 transition-colors"
-					>
-						Conoce mi historia completa →
-					</a>
-				</div>
-				<div class="order-1 md:order-2 flex justify-center">
-					<div class="relative w-full max-w-md">
-						<div class="glass-panel p-3 rounded-[3rem] hover:-translate-y-2 transition-all duration-500 group relative z-10 shadow-xl shadow-teal-900/5">
-							<div class="w-full aspect-[4/5] rounded-[2rem] overflow-hidden relative border border-white/20">
-								{
-									images["/src/assets/images/cristina.png"]
-										?.default && (
-										<Picture
-											src={
-												images[
-													"/src/assets/images/cristina.png"
-												].default
-											}
-											alt="Cristina Murciano"
-											formats={['avif', 'webp']}
-											widths={[400, 800]}
-											sizes="(max-width: 768px) 100vw, 500px"
-											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-										/>
-									)
-								}
-								<div class="absolute inset-0 bg-gradient-to-t from-teal-900/10 to-transparent"></div>
+					</div>
+
+					<div class="grid md:grid-cols-2 gap-0">
+						<!-- Image Side (Left) -->
+						<div class="relative h-80 md:h-auto overflow-hidden">
+							<div
+								class="absolute inset-0 bg-gradient-to-r from-transparent to-white/10 z-10 hidden md:block"
+							>
+							</div>
+							{
+								images["/src/assets/images/blog-hands.png"]
+									?.default && (
+									<Picture
+										src={
+											images[
+												"/src/assets/images/blog-hands.png"
+											].default
+										}
+										alt="Masaje terapéutico e hidratación en Monzón"
+										formats={["avif", "webp"]}
+										widths={[600, 1200]}
+										sizes="(max-width: 768px) 100vw, 50vw"
+										class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[3s]"
+									/>
+								)
+							}
+							<div
+								class="absolute inset-0 bg-teal-900/5 group-hover:bg-transparent transition-colors duration-700"
+							>
 							</div>
 						</div>
-						
-						<!-- Decorative element behind image -->
-						<div class="absolute -bottom-6 -right-6 w-32 h-32 bg-lilac-200/50 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
-						<div class="absolute -top-10 -left-10 w-48 h-48 bg-teal-100/40 rounded-full blur-[80px] -z-10"></div>
+
+						<!-- Content Side (Right) -->
+						<div class="p-10 md:p-16 flex flex-col justify-center">
+							<span
+								class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4 block"
+								>BIENESTAR HOLÍSTICO</span
+							>
+							<h2
+								class="text-3xl md:text-5xl font-serif text-gray-800 mb-6 leading-tight"
+							>
+								Recupera tu <span class="holographic-text"
+									>equilibrio</span
+								>
+							</h2>
+							<div
+								class="space-y-4 text-lg text-gray-700 font-light leading-relaxed mb-8"
+							>
+								<p>
+									Bienvenida a un espacio dedicado a tu
+									bienestar. En mi consulta de Monzón,
+									entiendo que cada cuerpo cuenta una historia
+									diferente. Por eso, mi enfoque no es solo
+									tratar el síntoma, sino escuchar lo que tu
+									organismo necesita para volver a su estado
+									óptimo.
+								</p>
+								<p>
+									A través del <strong
+										>masaje terapéutico</strong
+									> y diversas técnicas manuales, trabajamos juntos
+									para liberar tensiones, reducir el estrés y restaurar
+									esa energía vital que a veces perdemos. Mi compromiso
+									es ofrecerte un trato cercano, profesional y totalmente
+									personalizado para ayudarte a recuperar tu bienestar
+									integral.
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
+			</div>
+		</section>
 
+		<section id="servicios" class="max-w-7xl mx-auto py-12 reveal">
+			<div class="text-center mb-8">
+				<h2
+					class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4"
+				>
+					Tratamientos
+				</h2>
+				<h3 class="text-5xl font-serif text-gray-800 reveal-heading">
+					Tratamientos <span class="holographic-text normal-case"
+						>holísticos</span
+					>
+				</h3>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{
+					services.map((service) => (
+						<a
+							href={`/tratamientos/${service.id}`}
+							class="glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 cursor-pointer group flex flex-col transition-all duration-300"
+						>
+							<div class="h-64 overflow-hidden relative">
+								{images[
+									`/src/assets/images/${service.image}`
+								] ? (
+									<Picture
+										src={
+											images[
+												`/src/assets/images/${service.image}`
+											].default
+										}
+										alt={service.image_alt || service.title}
+										formats={["avif", "webp"]}
+										widths={[400, 800]}
+										sizes="(max-width: 768px) 100vw, 400px"
+										class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+									/>
+								) : null}
+								<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+							</div>
+							<div class="p-8 flex flex-col flex-grow">
+								<h4 class="text-2xl font-serif text-gray-800 mb-3 group-hover:text-teal-600 transition-colors">
+									{service.title}
+								</h4>
+								<p class="text-gray-600 font-light mb-6 flex-grow line-clamp-3 leading-relaxed">
+									{service.shortDescription}
+								</p>
+								<div class="flex items-center text-teal-600 font-medium text-sm">
+									Descubrir más
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M17 8l4 4m0 0l-4 4m4-4H3"
+										/>
+									</svg>
+								</div>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Sobre Mi Section -->
+		<section id="sobre-mi" class="py-12 px-6 reveal">
+			<div class="max-w-6xl mx-auto">
+				<div
+					class="glass-panel rounded-[3.5rem] overflow-hidden relative group"
+				>
+					<!-- Decorative Background Elements -->
+					<div
+						class="absolute top-0 left-0 w-96 h-96 bg-teal-100/20 rounded-full blur-[100px] -z-10 group-hover:scale-110 transition-transform duration-1000"
+					>
+					</div>
+					<div
+						class="absolute bottom-0 right-0 w-64 h-64 bg-lilac-100/20 rounded-full blur-[80px] -z-10"
+					>
+					</div>
+
+					<div class="grid md:grid-cols-2 gap-0">
+						<!-- Content Side -->
+						<div
+							class="p-10 md:p-16 flex flex-col justify-center order-2 md:order-1"
+						>
+							<h2
+								class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4"
+							>
+								SOBRE MÍ
+							</h2>
+							<h3
+								class="text-3xl md:text-4xl font-serif text-gray-800 mb-5"
+							>
+								Pasión por el <span
+									class="holographic-text normal-case"
+									>bienestar</span
+								>
+							</h3>
+							<p
+								class="text-gray-600 font-light leading-relaxed mb-6"
+							>
+								Soy <strong>Cristina Murciano</strong>,
+								terapeuta holística con más de dos décadas de
+								experiencia en el mundo del masaje y las
+								terapias naturales. Mi pasión es acompañarte en
+								tu camino hacia el equilibrio, utilizando
+								técnicas que combinan tradición y conocimiento
+								para ofrecerte un cuidado integral.
+							</p>
+							<p
+								class="text-gray-600 font-light leading-relaxed mb-8"
+							>
+								Cada persona es única, por eso adapto cada
+								sesión a tus necesidades específicas, ya sea
+								para aliviar tensiones musculares, mejorar la
+								circulación o trabajar el bienestar emocional.
+							</p>
+							<div class="flex">
+								<a
+									href="/sobre-mi"
+									class="inline-flex items-center text-teal-600 font-medium hover:text-lilac-600 transition-colors"
+								>
+									Conoce mi historia completa →
+								</a>
+							</div>
+						</div>
+
+						<!-- Image Side -->
+						<div
+							class="relative h-80 md:h-auto overflow-hidden order-1 md:order-2"
+						>
+							<div
+								class="absolute inset-0 bg-gradient-to-l from-white/10 to-transparent z-10 hidden md:block"
+							>
+							</div>
+							{
+								images["/src/assets/images/cristina.png"]
+									?.default && (
+									<Picture
+										src={
+											images[
+												"/src/assets/images/cristina.png"
+											].default
+										}
+										alt="Cristina Murciano"
+										formats={["avif", "webp"]}
+										widths={[600, 1200]}
+										sizes="(max-width: 768px) 100vw, 50vw"
+										class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]"
+									/>
+								)
+							}
+							<div
+								class="absolute inset-0 bg-teal-900/5 group-hover:bg-transparent transition-colors duration-700"
+							>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 
 		<!-- Testimonials Preview -->
 		<section class="py-12 px-6 max-w-7xl mx-auto reveal">
-			<div class="text-center mb-16">
-				<span
-					class="text-lilac-600 font-medium tracking-widest uppercase text-sm"
-					>Opiniones</span
+			<div class="text-center mb-8">
+				<h2
+					class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4"
 				>
-				<h2 class="text-4xl font-serif text-gray-800 mt-4 mb-6">
-					Lo que dicen mis pacientes
+					OPINIONES
 				</h2>
-				<div
-					class="w-24 h-1 bg-gradient-to-r from-teal-300 to-lilac-300 mx-auto rounded-full"
+				<h3
+					class="text-5xl font-serif text-gray-800 reveal-heading mb-6"
 				>
-				</div>
+					Lo que dicen mis <span class="holographic-text normal-case"
+						>clientes</span
+					>
+				</h3>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -246,57 +360,77 @@ const latestPosts = [...posts]
 			</div>
 		</section>
 
+		<!-- Gift Voucher Section -->
+		<GiftVoucher />
+
 		<!-- Blog Preview -->
 		<section class="py-12 px-6 reveal">
 			<div class="max-w-7xl mx-auto">
-				<div class="text-center mb-16">
-					<span
-						class="text-teal-600 font-medium tracking-widest uppercase text-sm"
-						>Blog</span
+				<div class="text-center mb-8">
+					<h2
+						class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4"
 					>
-					<h2 class="text-4xl font-serif text-gray-800 mt-4 mb-6">
-						Últimos artículos
+						BLOG
 					</h2>
-					<div
-						class="w-24 h-1 bg-gradient-to-r from-teal-300 to-lilac-300 mx-auto rounded-full"
+					<h3
+						class="text-4xl md:text-5xl font-serif text-gray-800 reveal-heading"
 					>
-					</div>
+						Artículos y <span class="holographic-text normal-case"
+							>consejos</span
+						>
+					</h3>
 				</div>
 
 				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 					{
 						latestPosts.map((post) => {
 							const imageSrc =
-								images[`/src/assets/images/${post.image}`]
+								images[`/src/assets/images/${post.data.image}`]
 									?.default;
+							const altText =
+								post.data.image_alt ||
+								post.data.title ||
+								"Artículo del blog";
 							return (
 								<a
 									href={`/blog/${post.slug}`}
 									class="group glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-300 block"
 								>
 									<div class="aspect-video bg-gray-200 relative overflow-hidden">
-                                {imageSrc && (
-                                    <Picture
-                                        src={imageSrc}
-                                        alt={post.image_alt || post.title}
-                                        formats={["avif", "webp"]}
-                                        widths={[400, 800]}
-                                        sizes="(max-width: 768px) 100vw, 400px"
-                                        loading={latestPosts.indexOf(post) === 0 ? "eager" : "lazy"}
-                                        fetchpriority={latestPosts.indexOf(post) === 0 ? "high" : "auto"}
-                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                    />
-                                )}
-                            </div>
+										{imageSrc && (
+											<Picture
+												src={imageSrc}
+												alt={altText}
+												formats={["avif", "webp"]}
+												widths={[400, 800]}
+												sizes="(max-width: 768px) 100vw, 400px"
+												loading={
+													latestPosts.indexOf(
+														post,
+													) === 0
+														? "eager"
+														: "lazy"
+												}
+												fetchpriority={
+													latestPosts.indexOf(
+														post,
+													) === 0
+														? "high"
+														: "auto"
+												}
+												class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+											/>
+										)}
+									</div>
 									<div class="p-6">
 										<span class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-2 block">
-											{post.date}
+											{post.data.date}
 										</span>
 										<h3 class="text-xl font-serif text-gray-800 mb-2 group-hover:text-lilac-600 transition-colors line-clamp-2">
-											{post.title}
+											{post.data.title}
 										</h3>
 										<p class="text-gray-500 font-light text-sm line-clamp-2">
-											{post.excerpt}
+											{post.data.excerpt}
 										</p>
 									</div>
 								</a>
@@ -317,39 +451,96 @@ const latestPosts = [...posts]
 		</section>
 
 		<!-- Local SEO / Location Section -->
-		<section class="py-16 px-6 reveal">
+		<section class="py-12 px-6 reveal">
 			<div class="max-w-5xl mx-auto">
-				<div class="glass-panel rounded-[3rem] p-8 md:p-12 overflow-hidden relative group">
+				<div
+					class="glass-panel rounded-[3rem] p-8 md:p-12 overflow-hidden relative group"
+				>
 					<!-- Background glow internal to card -->
-					<div class="absolute top-0 right-0 w-64 h-64 bg-teal-100/30 rounded-full blur-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+					<div
+						class="absolute top-0 right-0 w-64 h-64 bg-teal-100/30 rounded-full blur-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+					>
+					</div>
 
-					<div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+					<div
+						class="grid md:grid-cols-2 gap-12 items-center relative z-10"
+					>
 						<div class="text-center md:text-left">
-							<span class="text-xs font-semibold text-teal-600 uppercase tracking-widest mb-3 block">Ubicación</span>
-							<h2 class="text-3xl md:text-4xl font-serif text-gray-800 mb-6">Estamos en el corazón de <span class="text-teal-600 italic">Monzón</span></h2>
-							
+							<span
+								class="text-teal-600 font-medium tracking-widest uppercase text-sm mb-4 block"
+								>UBICACIÓN</span
+							>
+							<h2
+								class="text-3xl md:text-4xl font-serif text-gray-800 mb-5"
+							>
+								Estamos en el corazón de <span
+									class="holographic-text italic">Monzón</span
+								>
+							</h2>
+
 							<div class="space-y-6">
-								<div class="flex items-center gap-4 justify-center md:justify-start">
-									<div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600">
-										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+								<div
+									class="flex items-center gap-4 justify-center md:justify-start"
+								>
+									<div
+										class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600"
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+											></path>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+											></path>
 										</svg>
 									</div>
-									<p class="text-gray-700 font-medium">{content.company.address}</p>
+									<p class="text-gray-700 font-medium">
+										{content.company.address}
+									</p>
 								</div>
 
-								<div class="flex items-center gap-4 justify-center md:justify-start">
-									<div class="w-10 h-10 rounded-full bg-lilac-50 flex items-center justify-center text-lilac-600">
-										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+								<div
+									class="flex items-center gap-4 justify-center md:justify-start"
+								>
+									<div
+										class="w-10 h-10 rounded-full bg-lilac-50 flex items-center justify-center text-lilac-600"
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+											></path>
 										</svg>
 									</div>
-									<p class="text-gray-600 font-light">Atención exclusiva con cita previa</p>
+									<p class="text-gray-600 font-light">
+										Atención exclusiva con cita previa
+									</p>
 								</div>
 							</div>
 
-							<div class="mt-10 flex flex-wrap gap-4 justify-center md:justify-start">
+							<div
+								class="mt-10 flex flex-wrap gap-4 justify-center md:justify-start"
+							>
 								<a
 									href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(content.company.address)}`}
 									target="_blank"
@@ -367,9 +558,25 @@ const latestPosts = [...posts]
 									Contactar ahora
 								</a>
 							</div>
+
+							<p
+								class="mt-8 text-xs text-gray-500 font-light italic leading-relaxed text-center md:text-left border-t border-gray-100 pt-6"
+							>
+								Ubicación de fácil acceso y cómodo aparcamiento,
+								ideal para quienes vienen desde <span
+									class="font-medium text-gray-600"
+									>Barbastro</span
+								>, <span class="font-medium text-gray-600"
+									>Binéfar</span
+								>, <span class="font-medium text-gray-600"
+									>Alcolea</span
+								> y alrededores.
+							</p>
 						</div>
 
-						<div class="relative h-64 md:h-[400px] w-full rounded-[2.5rem] overflow-hidden group shadow-2xl shadow-teal-900/10 border border-white/40">
+						<div
+							class="relative h-64 md:h-[400px] w-full rounded-[2.5rem] overflow-hidden group shadow-2xl shadow-teal-900/10 border border-white/40"
+						>
 							<!-- Live Map -->
 							<iframe
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.7905!2d0.1903!3d41.9080!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a0ed8148b30e83%3A0x6b97d39de675878!2sPlaza%20Mar%C3%ADa%20Moliner%2C%2014%2C%2022400%20Monz%C3%B3n%2C%20Huesca!5e0!3m2!1ses!2ses!4v1706800000000!5m2!1ses!2ses"
@@ -380,13 +587,21 @@ const latestPosts = [...posts]
 								loading="lazy"
 								referrerpolicy="no-referrer-when-downgrade"
 							></iframe>
-							
+
 							<!-- Professional Gradient Tint Overlay (Teal to Lilac) -->
-							<div class="absolute inset-0 bg-gradient-to-br from-teal-600/40 to-lilac-500/40 mix-blend-color pointer-events-none group-hover:opacity-0 transition-opacity duration-700"></div>
-							<div class="absolute inset-0 bg-gradient-to-t from-teal-900/20 via-transparent to-lilac-900/10 pointer-events-none group-hover:opacity-0 transition-opacity duration-700"></div>
+							<div
+								class="absolute inset-0 bg-gradient-to-br from-teal-600/40 to-lilac-500/40 mix-blend-color pointer-events-none group-hover:opacity-0 transition-opacity duration-700"
+							>
+							</div>
+							<div
+								class="absolute inset-0 bg-gradient-to-t from-teal-900/20 via-transparent to-lilac-900/10 pointer-events-none group-hover:opacity-0 transition-opacity duration-700"
+							>
+							</div>
 
 							<!-- Floating Badge -->
-							<div class="absolute top-6 left-6 glass-panel py-2 px-4 rounded-full text-xs font-semibold text-teal-700 backdrop-blur-sm border-white/50 pointer-events-none group-hover:opacity-0 transition-opacity duration-500">
+							<div
+								class="absolute top-6 left-6 glass-panel py-2 px-4 rounded-full text-xs font-semibold text-teal-700 backdrop-blur-sm border-white/50 pointer-events-none group-hover:opacity-0 transition-opacity duration-500"
+							>
 								📍 Plaza María Moliner, 14
 							</div>
 						</div>
@@ -394,6 +609,9 @@ const latestPosts = [...posts]
 				</div>
 			</div>
 		</section>
+
+		<!-- FAQ Section -->
+		<Faq />
 	</main>
 
 	<Footer />

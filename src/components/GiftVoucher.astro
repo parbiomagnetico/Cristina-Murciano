@@ -1,0 +1,104 @@
+---
+import { Picture } from "astro:assets";
+import giftImage from "../assets/images/blog-massage.png";
+import content from "../data/content.json";
+
+const waPhone = content.company.phone.replace(/[^0-9]/g, "");
+---
+
+<section class="py-12 px-6 reveal">
+    <div class="max-w-6xl mx-auto">
+        <div
+            class="glass-panel rounded-[3.5rem] overflow-hidden relative group"
+        >
+            <!-- Decorative Background Elements -->
+            <div
+                class="absolute top-0 right-0 w-96 h-96 bg-lilac-200/20 rounded-full blur-[100px] -z-10 group-hover:scale-110 transition-transform duration-1000"
+            >
+            </div>
+            <div
+                class="absolute bottom-0 left-0 w-64 h-64 bg-teal-100/20 rounded-full blur-[80px] -z-10"
+            >
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-0">
+                <!-- Content Side -->
+                <div
+                    class="p-10 md:p-16 flex flex-col justify-center order-2 md:order-1"
+                >
+                    <span
+                        class="text-teal-600 font-medium tracking-widest uppercase text-sm mb-4 block"
+                        >EL REGALO PERFECTO</span
+                    >
+                    <h2
+                        class="text-4xl md:text-5xl font-serif text-gray-900 mb-5 leading-tight"
+                    >
+                        Regala <span class="holographic-text">bienestar</span> y equilibrio
+                    </h2>
+                    <p
+                        class="text-gray-600 font-light text-lg leading-relaxed mb-8"
+                    >
+                        Demuestra cuánto te importan con una experiencia
+                        transformadora. Nuestros bonos regalo son la forma ideal
+                        de obsequiar salud, relajación y un momento de paz en
+                        Monzón.
+                    </p>
+
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-gray-700">
+                            <span class="w-2 h-2 rounded-full bg-teal-400"
+                            ></span>
+                            Personalizable para cualquier tratamiento
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700">
+                            <span class="w-2 h-2 rounded-full bg-lilac-400"
+                            ></span>
+                            Sin fecha de caducidad inmediata
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700">
+                            <span class="w-2 h-2 rounded-full bg-gold-400"
+                            ></span>
+                            Presentación elegante y cuidada
+                        </li>
+                    </ul>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a
+                            href={`https://wa.me/${waPhone}?text=${encodeURIComponent("Hola Cristina, me gustaría comprar un Bono Regalo. ¿Me podrías dar más información?")}`}
+                            target="_blank"
+                            class="px-8 py-4 bg-teal-600 text-white rounded-full font-medium hover:bg-lilac-600 transition-all duration-300 shadow-lg shadow-teal-900/10 scale-100 hover:scale-105"
+                        >
+                            Solicitar Bono Regalo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Image Side -->
+                <div
+                    class="relative h-80 md:h-auto overflow-hidden order-1 md:order-2"
+                >
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent z-10 hidden md:block"
+                    >
+                    </div>
+                    {
+                        giftImage && (
+                            <Picture
+                                src={giftImage}
+                                alt="Bono Regalo Cristina Murciano - Bienestar en Monzón"
+                                formats={["avif", "webp"]}
+                                widths={[600, 1200]}
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[3s]"
+                            />
+                        )
+                    }
+                    <div
+                        class="absolute inset-0 bg-teal-900/5 group-hover:bg-transparent transition-colors duration-700"
+                    >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,16 +1,23 @@
 ---
 import "../styles/global.css";
 // Import fonts directly to allow Astro to optimize their loading
+import "@fontsource/outfit/300.css";
 import "@fontsource/outfit/400.css";
+import "@fontsource/outfit/500.css";
 import "@fontsource/outfit/600.css";
+import "@fontsource/montserrat/300.css";
 import "@fontsource/montserrat/400.css";
+import "@fontsource/montserrat/500.css";
 import "@fontsource/montserrat/600.css";
 
 // Preload the most critical fonts for instant discovery
+import outfit300 from "@fontsource/outfit/files/outfit-latin-300-normal.woff2?url";
 import outfit400 from "@fontsource/outfit/files/outfit-latin-400-normal.woff2?url";
+import outfit500 from "@fontsource/outfit/files/outfit-latin-500-normal.woff2?url";
 import montserrat600 from "@fontsource/montserrat/files/montserrat-latin-600-normal.woff2?url";
 
 import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
 	title: string;
@@ -46,7 +53,14 @@ const {
 		<!-- Preload critical fonts -->
 		<link
 			rel="preload"
-			href={outfit400}
+			href={outfit300}
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href={outfit500}
 			as="font"
 			type="font/woff2"
 			crossorigin
@@ -58,6 +72,49 @@ const {
 			type="font/woff2"
 			crossorigin
 		/>
+
+		<!-- Local Business Schema -->
+		<script is:inline type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LocalBusiness",
+				"name": "Cristina Murciano",
+				"image": "https://cristinamurciano.es/og-image.jpg",
+				"@id": "https://cristinamurciano.es",
+				"url": "https://cristinamurciano.es",
+				"telephone": "+34696049698",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "Plaza María Moliner 14",
+					"addressLocality": "Monzón",
+					"postalCode": "22400",
+					"addressRegion": "Huesca",
+					"addressCountry": "ES"
+				},
+				"geo": {
+					"@type": "GeoCoordinates",
+					"latitude": 41.908,
+					"longitude": 0.1903
+				},
+				"openingHoursSpecification": {
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": [
+						"Monday",
+						"Tuesday",
+						"Wednesday",
+						"Thursday",
+						"Friday"
+					],
+					"opens": "09:00",
+					"closes": "20:00"
+				},
+				"sameAs": [
+					"https://www.facebook.com/Cristina-Murciano-139",
+					"https://www.instagram.com/cristinamurcianosanchez/"
+				]
+			}
+		</script>
+		<ClientRouter />
 	</head>
 	<body
 		class="bg-gradient-to-br from-white to-lilac-100/30 min-h-screen relative"
@@ -84,5 +141,50 @@ const {
 
 		<slot />
 		<WhatsAppButton />
+
+		<script>
+			function initReveal() {
+				// Feature detection for CSS scroll-driven animations
+				// If the browser supports them, we don't need the JS fallback
+				const supportsScrollTimeline = CSS.supports(
+					"animation-timeline",
+					"scroll()",
+				);
+
+				if (supportsScrollTimeline) {
+					// Optionally cleanup existing reveal-js classes if re-running
+					document
+						.querySelectorAll(".reveal")
+						.forEach((el) => el.classList.remove("reveal-js"));
+					return;
+				}
+
+				const observerOptions = {
+					root: null,
+					rootMargin: "0px",
+					threshold: 0.1,
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("active");
+						}
+					});
+				}, observerOptions);
+
+				const revealElements = document.querySelectorAll(".reveal");
+				revealElements.forEach((el) => {
+					el.classList.add("reveal-js");
+					observer.observe(el);
+				});
+			}
+
+			// Initialize on first load
+			initReveal();
+
+			// Re-initialize after view transitions
+			document.addEventListener("astro:page-load", initReveal);
+		</script>
 	</body>
 </html>

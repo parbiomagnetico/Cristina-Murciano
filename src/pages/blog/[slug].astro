@@ -2,10 +2,12 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
+import AuthorBio from "../../components/AuthorBio.astro";
 import { Picture } from "astro:assets";
-import posts from "../../data/posts.json";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
+    const posts = await getCollection("blog");
     return posts.map((post) => ({
         params: { slug: post.slug },
         props: { post },
@@ -13,113 +15,281 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const { Content } = await render(post);
+
+// Get all posts for navigation
+const allPosts = (await getCollection("blog"))
+    .filter((p) => p.data.active !== false)
+    .sort(
+        (a, b) =>
+            new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+    );
+
+const currentIndex = allPosts.findIndex((p) => p.slug === post.slug);
+const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+const prevPost =
+    currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
+// Split title by colon for dual-styling
+const titleParts = post.data.title.split(":");
+const hasColon = titleParts.length > 1;
+const titlePrefix = hasColon ? titleParts[0] + ":" : "";
+const titleSuffix = hasColon ? titleParts.slice(1).join(":") : post.data.title;
+
 const images = import.meta.glob<{ default: ImageMetadata }>(
     "/src/assets/images/*.{png,webp,jpg,jpeg}",
     { eager: true },
 );
-const imageSrc = images[`/src/assets/images/${post.image}`]?.default;
+const imageSrc = images[`/src/assets/images/${post.data.image}`]?.default;
 const ogImage = imageSrc ? imageSrc.src : undefined;
 
 const schema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    headline: post.title,
+    headline: post.data.title,
     image: ogImage ? new URL(ogImage, Astro.url).href : undefined,
-    datePublished: post.date, // Assuming YYYY-MM-DD or similar standard format, otherwise might need parsing
+    datePublished: post.data.date,
     author: {
         "@type": "Person",
         name: "Cristina Murciano",
         url: Astro.site,
     },
-    description: post.excerpt,
+    description: post.data.excerpt,
 };
 ---
 
 <BaseLayout
-    title={`${post.title} | Blog`}
-    description={post.excerpt}
+    title={`${post.data.title} | Blog`}
+    description={post.data.excerpt}
     image={ogImage}
 >
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+    <!-- Reading Progress Bar -->
+    <div
+        id="reading-progress"
+        class="fixed top-0 left-0 h-1 bg-teal-500 z-[100] transition-all duration-150 ease-out pointer-events-none"
+        style="width: 0%"
+    >
+    </div>
+
     <Nav />
 
-    <article class="pt-32 pb-20 px-6 max-w-4xl mx-auto">
-        <header class="text-center mb-16">
-            <span
-                class="text-teal-600 font-medium tracking-widest uppercase text-sm mb-4 block"
-                >{post.date}</span
-            >
-            <h1
-                class="text-4xl md:text-6xl font-serif text-gray-900 leading-tight mb-8 text-balance"
-            >
-                {post.title}
-            </h1>
+    <main class="pt-32 pb-20">
+        <!-- Hero Title Section -->
+        <article class="max-w-3xl mx-auto px-6 mb-12">
+            <header class="text-center">
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-tight mb-8 text-balance"
+                >
+                    {
+                        hasColon ? (
+                            <>
+                                <span class="text-gray-900">{titlePrefix}</span>
+                                <span class="holographic-text normal-case">
+                                    {titleSuffix}
+                                </span>
+                            </>
+                        ) : (
+                            <span class="holographic-text normal-case">
+                                {post.data.title}
+                            </span>
+                        )
+                    }
+                </h1>
+            </header>
+        </article>
 
-            <div
-                class="aspect-video bg-gray-200 rounded-3xl overflow-hidden relative shadow-lg"
-            >
-                {
-                    imageSrc && (
+        <!-- Content Container (Clean & Centered) -->
+        <section class="max-w-3xl mx-auto px-6 mb-20">
+            <!-- Featured Image -->
+            {
+                imageSrc && (
+                    <div class="rounded-3xl overflow-hidden mb-12 shadow-sm border border-gray-100">
                         <Picture
                             src={imageSrc}
-                            alt={post.image_alt || post.title}
+                            alt={post.data.image_alt || post.data.title}
                             formats={["avif", "webp"]}
-                            widths={[400, 800, 1200]}
-                            sizes="(max-width: 768px) 100vw, 896px"
+                            widths={[800, 1200]}
+                            sizes="(max-width: 768px) 100vw, 800px"
                             loading="eager"
                             fetchpriority="high"
-                            class="w-full h-full object-cover"
+                            class="w-full h-auto object-cover"
                         />
+                    </div>
+                )
+            }
+
+            <!-- Abstract / Excerpt Block -->
+            <div class="border-l-4 border-teal-500 pl-8 mb-12 py-1">
+                <p
+                    class="text-xl md:text-2xl text-gray-800 font-serif leading-relaxed italic opacity-90"
+                >
+                    {post.data.excerpt}
+                </p>
+            </div>
+
+            <!-- Markdown Content with the "Prose" Refined for Branding -->
+            <div
+                class="prose prose-lg max-w-none
+                prose-headings:font-serif prose-headings:text-teal-800 prose-headings:font-normal
+                prose-h2:text-gray-900 prose-h2:font-medium prose-h2:mt-16 prose-h2:mb-8
+                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:font-light prose-p:mb-6
+                prose-strong:text-teal-600 prose-strong:font-medium
+                prose-a:text-teal-600 hover:prose-a:text-lilac-600
+                prose-li:text-gray-700
+                prose-img:rounded-2xl prose-img:shadow-sm"
+            >
+                <Content />
+            </div>
+
+            <AuthorBio />
+
+            <!-- Publication Date -->
+            <div class="mt-12 pt-8 border-t border-gray-100 flex justify-end">
+                <span class="text-sm text-gray-400 font-serif italic">
+                    Publicado el {
+                        new Date(post.data.date).toLocaleDateString("es-ES", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })
+                    }
+                </span>
+            </div>
+
+            <!-- Previous / Next Navigation -->
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16 pt-16 border-t border-gray-100"
+            >
+                {
+                    prevPost ? (
+                        <a
+                            href={`/blog/${prevPost.slug}`}
+                            class="group p-6 rounded-3xl bg-gray-50/50 border border-gray-100 hover:border-teal-200 hover:bg-white transition-all duration-300"
+                        >
+                            <span class="text-xs uppercase tracking-widest text-gray-400 mb-2 block font-sans">
+                                Anterior
+                            </span>
+                            <h3 class="text-lg font-serif text-gray-800 group-hover:text-teal-700 transition-colors line-clamp-2">
+                                {prevPost.data.title}
+                            </h3>
+                        </a>
+                    ) : (
+                        <div />
+                    )
+                }
+
+                {
+                    nextPost ? (
+                        <a
+                            href={`/blog/${nextPost.slug}`}
+                            class="group p-6 rounded-3xl bg-gray-50/50 border border-gray-100 hover:border-teal-200 hover:bg-white transition-all duration-300 text-right"
+                        >
+                            <span class="text-xs uppercase tracking-widest text-gray-400 mb-2 block font-sans">
+                                Siguiente
+                            </span>
+                            <h3 class="text-lg font-serif text-gray-800 group-hover:text-teal-700 transition-colors line-clamp-2">
+                                {nextPost.data.title}
+                            </h3>
+                        </a>
+                    ) : (
+                        <div />
                     )
                 }
             </div>
-        </header>
+        </section>
 
-        <div
-            class="prose prose-lg prose-gray mx-auto prose-headings:font-serif prose-headings:text-gray-900 prose-a:text-teal-600 hover:prose-a:text-lilac-600 prose-img:rounded-2xl"
+        <!-- Final CTA -->
+        <section
+            class="max-w-xl mx-auto px-6 text-center border-t border-gray-100 pt-16 mt-16"
         >
-            <p
-                class="lead text-2xl text-gray-600 font-light leading-relaxed mb-8 border-l-4 border-lilac-300 pl-6"
-            >
-                {post.excerpt}
-            </p>
-
-            <!-- Simulating content rendering -->
             <div
-                class="whitespace-pre-wrap font-light text-gray-700"
-                set:html={post.content}
-            />
-
-            <hr class="border-gray-200 my-12" />
-
-            <div
-                class="bg-lilac-50 p-8 rounded-2xl flex items-center gap-6 not-prose"
+                class="inline-flex items-center justify-center w-20 h-20 bg-lilac-50 rounded-full mb-8"
             >
-                <div
-                    class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-2xl shadow-sm"
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-10 h-10 text-lilac-600"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
                 >
-                    👩‍⚕️
-                </div>
-                <div>
-                    <h4 class="font-serif text-xl text-gray-900">
-                        Cristina Murciano
-                    </h4>
-                    <p class="text-sm text-gray-500">
-                        Terapeuta Holística y experta en bienestar natural.
-                    </p>
-                </div>
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                    ></path>
+                </svg>
             </div>
-        </div>
-
-        <div class="max-w-4xl mx-auto mt-20 text-center">
-            <a
-                href="/blog"
-                class="inline-flex items-center text-gray-500 hover:text-gray-900 font-medium transition-colors"
-            >
-                ← Volver al Blog
-            </a>
-        </div>
-    </article>
+            <h2 class="text-3xl font-serif text-gray-900 mb-4">
+                ¿Hablamos sobre tu bienestar?
+            </h2>
+            <p class="text-gray-500 font-light mb-10 leading-relaxed text-lg">
+                Si sientes que es el momento de dedicarte un espacio de salud y
+                relajación, estaré encantada de recibirte en mi consulta de
+                Monzón.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                    href="https://wa.me/34661000000"
+                    target="_blank"
+                    class="px-10 py-4 bg-teal-600 text-white rounded-2xl font-bold hover:bg-teal-700 transition-all shadow-lg shadow-teal-900/10 items-center justify-center flex gap-2"
+                >
+                    Reservar Cita
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+                <a
+                    href="/blog"
+                    class="px-10 py-4 border border-gray-200 text-gray-600 rounded-2xl font-bold hover:bg-gray-50 transition-colors"
+                >
+                    Volver al Blog
+                </a>
+            </div>
+        </section>
+    </main>
 
     <Footer />
 </BaseLayout>
+
+<style is:global>
+    /* Custom spacing for the blog content */
+    article .prose p {
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+<script>
+    function updateProgress() {
+        const progressBar = document.getElementById("reading-progress");
+        if (!progressBar) return;
+
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop =
+            window.pageYOffset || document.documentElement.scrollTop;
+
+        const scrollDistance = documentHeight - windowHeight;
+        const scrollPercentage = (scrollTop / scrollDistance) * 100;
+
+        progressBar.style.width = scrollPercentage + "%";
+    }
+
+    // Update on scroll
+    window.addEventListener("scroll", updateProgress);
+    // Update on load/resize
+    window.addEventListener("resize", updateProgress);
+    document.addEventListener("astro:page-load", updateProgress);
+</script>

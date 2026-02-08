@@ -1,0 +1,121 @@
+
+> cristinamurciano@0.0.1 build
+> astro build
+
+[2m14:30:00[22m [34m[content][39m Syncing content
+[2m14:30:00[22m [34m[content][39m Synced content
+[2m14:30:00[22m [34m[types][39m Generated [2m721ms[22m
+[2m14:30:00[22m [34m[build][39m output: [34m"static"[39m
+[2m14:30:00[22m [34m[build][39m mode: [34m"static"[39m
+[2m14:30:00[22m [34m[build][39m directory: [34mC:\Users\facto\Desktop\Cristinamurciano\dist\[39m
+[2m14:30:00[22m [34m[build][39m Collecting build info...
+[2m14:30:00[22m [34m[build][39m [32m✓ Completed in 787ms.[39m
+[2m14:30:00[22m [34m[build][39m Building static entrypoints...
+[2m14:30:03[22m [34m[vite][39m [32m✓ built in 2.44s[39m
+[2m14:30:03[22m [34m[build][39m [32m✓ Completed in 2.50s.[39m
+
+[42m[30m building client (vite) [39m[49m
+[2m14:30:03[22m [34m[vite][39m transforming...
+[2m14:30:03[22m [34m[vite][39m [32m✓[39m 23 modules transformed.
+[2m14:30:04[22m [34m[vite][39m rendering chunks...
+[2m14:30:04[22m [34m[vite][39m computing gzip size...
+[2m14:30:04[22m [34m[vite][39m [2mdist/[22m[36m_astro/client.T9fhd2RU.js  [39m[1m[2m194.63 kB[22m[1m[22m[2m │ gzip: 60.99 kB[22m
+[2m14:30:04[22m [34m[vite][39m [32m✓ built in 940ms[39m
+
+[42m[30m generating static routes [39m[49m
+[2m14:30:04[22m [32m▶[39m src/pages/aviso-legal.astro
+[2m14:30:04[22m   [34m└─[39m [2m/aviso-legal/index.html[22m [2m(+29ms)[22m 
+[2m14:30:04[22m [32m▶[39m src/pages/blog/[slug].astro
+[2m14:30:04[22m   [34m├─[39m [2m/blog/bambuterapia-masaje-canas-bambu/index.html[22m [2m(+20ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/aromaterapia/index.html[22m [2m(+11ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/aromaterapia-en-el-masaje/index.html[22m [2m(+8ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/automasaje-fatiga-visual-dolor-cabeza/index.html[22m [2m(+7ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/bambuterapia/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/beneficio-masaje-molestias-musculares/index.html[22m [2m(+7ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/beneficios-del-masaje-contra-el-estres/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/beneficios-de-la-aromaterapia/index.html[22m [2m(+7ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/beneficios-del-masaje-de-piernas/index.html[22m [2m(+7ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/beneficios-del-masaje-si-sufres-de-cefaleas/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/bruxismo-atm-libera-tension/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/causas-del-dolor-muscular/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/como-combatir-el-estres/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/como-prevenir-el-dolor-lumbar/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/como-tratar-un-esguince/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/contracturas/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/calambres-musculares-causas-prevencion/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/conexion-cuerpo-mente-estres-emociones/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/contraindicaciones-aromaterapia/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/circulacion/index.html[22m [2m(+7ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/cuidar-cuerpo/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/corrige-tu-postura-en-el-trabajo/index.html[22m [2m(+7ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/cuello-de-texto-text-neck-prevencion/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/date-un-masaje-relajante/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/cuidado-manos/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/drenaje-linfatico-postoperatorio-recuperacion/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/cuidar-piel/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/efectos-masaje-circulatorio/index.html[22m [2m(+9ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/ejercicios-para-reducir-la-presion-arterial-alta/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/ejercicios-relajacion/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/el-sistema-linfatico/index.html[22m [2m(+8ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/equilibrarte-a-traves-de-un-masaje/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/el-poder-del-tacto-bienestar/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/estiramientos-dolor-lumbar-casa/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/ergonomia-teletrabajo-consejos/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/estres-y-cortisol/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/estiramientos/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/fascitis-plantar-dolor-talon/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/fisioterapia-deportiva/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/fisioterapia-sobrepeso/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/habitos-saludables/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/importancia-hidratacion/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/hidroterapia/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/hidratacion-y-fascia-saludable/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/la-postura-en-el-entrenamiento/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/lo-mejor-para-el-verano/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-abdominal-estrenimiento-digestion/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/mas-baile-y-menos-antidepresivos/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/higiene-del-sueno-descanso-reparador/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-antiestres/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-con-piedras-volcanicas/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-craneosacral/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-metamorfico/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-prenatal-seguro/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-deportivo-recuperacion/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masajes-necesidad/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-craneal-hindu-champi/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-circulatorio/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/masaje-muscular2/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/menopausia-equilibrio-natural-bienestar/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/migranas-masaje-suboccipital/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/origen-de-la-bambuterapia/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/piedras-calientes/index.html[22m [2m(+4ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/piedras-calientes-geoterapia-relajacion/index.html[22m [2m(+4ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/por-que-ir-a-un-profesional/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/piernas-cansadas/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/que-es-la-osteoartritis-oa/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/presoterapia/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/reflexologia-podal-beneficios-mapa/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/reflexologia-podal-infantil-conciliacion/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/reiki-energia-equilibrio-chakras/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/teoria-de-la-inflamacion/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/reflexoterapia/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/tendinitis/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/tecnicas-que-mejoran-las-alteraciones-musculoesqueleticas/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/terapia-manual-osteopatia-equilibrio/index.html[22m [2m(+8ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/tratar-sobrecarga-muscular/index.html[22m [2m(+9ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/salud-tacones/index.html[22m [2m(+6ms)[22m 
+[2m14:30:04[22m   [34m├─[39m [2m/blog/tratar-tendinitis/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m   [34m└─[39m [2m/blog/vendaje-neuromuscular/index.html[22m [2m(+5ms)[22m 
+[2m14:30:04[22m [32m▶[39m src/pages/blog/index.astro
+[ImageMissingAlt] Image missing "alt" property. "alt" text is required to describe important images on the page.
+  Hint:
+    Use an empty string ("") for decorative images.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/image-missing-alt/
+  Stack trace:
+    at file:///C:/Users/facto/Desktop/Cristinamurciano/dist/chunks/Footer_BTrXeq-y.mjs:1670:11
+    at AstroComponentInstance.init (file:///C:/Users/facto/Desktop/Cristinamurciano/dist/chunks/astro/server_BKWuxvzy.mjs:1572:29)
+    at Object.render (file:///C:/Users/facto/Desktop/Cristinamurciano/dist/chunks/astro/server_BKWuxvzy.mjs:1971:23)
+    at file:///C:/Users/facto/Desktop/Cristinamurciano/dist/chunks/astro/server_BKWuxvzy.mjs:1076:18
+    at createBufferedRenderer (file:///C:/Users/facto/Desktop/Cristinamurciano/dist/chunks/astro/server_BKWuxvzy.mjs:914:10)
+[2m14:30:04[22m   [34m└─[39m [2m/blog/index.html[22m

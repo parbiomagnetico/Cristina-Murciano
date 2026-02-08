@@ -1,0 +1,89 @@
+---
+import { Picture } from "astro:assets";
+import cristina from "../assets/images/cristina.png";
+---
+
+<div
+    class="mt-20 glass-panel rounded-[2.5rem] p-8 md:p-10 border border-teal-100 relative overflow-hidden group"
+>
+    <!-- Background Decoration -->
+    <div
+        class="absolute -top-10 -right-10 w-32 h-32 bg-teal-50 rounded-full blur-3xl opacity-60 group-hover:bg-lilac-50 transition-colors duration-500"
+    >
+    </div>
+
+    <div
+        class="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-10"
+    >
+        <!-- Author Image -->
+        <div class="w-32 h-32 md:w-40 md:h-40 shrink-0 relative">
+            <div
+                class="absolute inset-0 bg-gradient-to-tr from-teal-200 to-lilac-200 rounded-full animate-spin-slow opacity-20 group-hover:opacity-40 transition-opacity"
+            >
+            </div>
+            <div
+                class="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-md relative z-10"
+            >
+                <Picture
+                    src={cristina}
+                    alt="Cristina Murciano"
+                    formats={["avif", "webp"]}
+                    widths={[200, 400]}
+                    sizes="160px"
+                    class="w-full h-full object-cover"
+                />
+            </div>
+        </div>
+
+        <!-- Author Info -->
+        <div class="flex-grow text-center md:text-left">
+            <span
+                class="text-teal-600 font-sans font-medium tracking-widest uppercase text-[10px] mb-2 block"
+            >
+                Sobre la Autora
+            </span>
+            <h3 class="text-2xl font-serif text-gray-900 mb-3">
+                Cristina Murciano
+            </h3>
+            <p class="text-gray-600 font-light leading-relaxed mb-6 max-w-xl">
+                Terapeuta holística y masajista profesional con más de 10 años
+                de experiencia. Especializada en Reiki, Par Biomagnético y
+                técnicas de masaje consciente para restaurar el equilibrio
+                natural de cuerpo y mente en Monzón.
+            </p>
+            <a
+                href="/sobre-mi"
+                class="inline-flex items-center text-sm font-medium text-teal-700 hover:text-lilac-600 transition-colors group/link"
+            >
+                Conocer más sobre mi trayectoria
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .animate-spin-slow {
+        animation: spin 8s linear infinite;
+    }
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>

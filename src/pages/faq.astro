@@ -18,26 +18,39 @@ const faqs = [
         answer: "Realizo masajes descontracturantes y de descarga que alivian tensiones musculares comunes en deportistas. Sin embargo, para lesiones agudas o rehabilitación grave, recomiendo consultar primero a un médico o fisioterapeuta.",
     },
     {
+        question: "¿Con qué frecuencia se recomienda recibir un masaje?",
+        answer: "Depende de tus objetivos. Para mantenimiento y prevención del estrés, una sesión al mes es lo ideal. Si estamos tratando una molestia específica o contractura persistente, solemos recomendar sesiones más seguidas al principio (cada 1 o 2 semanas) hasta que el cuerpo recupere su equilibrio natural.",
+    },
+    {
+        question: "¿Qué técnicas son mejores para el dolor lumbar o cervical?",
+        answer: "Para estas zonas solemos combinar el Masaje Muscular (Quiromasaje) para liberar la tensión física, con técnicas de Osteopatía Craneosacral si el origen es tensional.",
+    },
+    {
         question: "¿Cómo puedo reservar cita?",
-        answer: "La forma más rápida es a través de WhatsApp (botón en esta web) o llamando directamente. Atiendo con cita previa para garantizar la exclusividad de tu tiempo.",
+        answer: "La forma más rápida es a través de WhatsApp (botón en esta web) o llamando directamente al +34 696 049 698. Atiendo siempre con cita previa para garantizar la exclusividad y tranquilidad de tu tiempo en consulta.",
     },
 ];
 ---
 
-<BaseLayout title="Preguntas Frecuentes | Cristina Murciano">
+<BaseLayout
+    title="Dudas sobre Masajes y Terapias en Monzón"
+    description="Preguntas frecuentes sobre mis sesiones de masaje en Monzón, beneficios de los tratamientos y cómo las terapias naturales pueden ayudarte."
+>
     <Nav />
 
-    <main class="pt-32 pb-20 px-6">
-        <div class="max-w-3xl mx-auto text-center mb-16">
-            <h1 class="text-4xl font-serif text-gray-800 mb-4">
-                Preguntas <span class="text-teal-500 italic">Frecuentes</span>
+    <main class="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <h1
+                class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm mb-4"
+            >
+                Preguntas Frecuentes
             </h1>
-            <p class="text-gray-500 font-light">
-                Todo lo que necesitas saber antes de tu primera visita.
-            </p>
+            <h2 class="text-5xl font-serif text-gray-800 reveal-heading">
+                Estamos aquí para <span class="holographic-text">ayudarte</span>
+            </h2>
         </div>
 
-        <section class="max-w-2xl mx-auto space-y-6">
+        <section class="space-y-4 mb-20 reveal">
             {
                 faqs.map((faq, index) => (
                     <details class="glass-panel rounded-2xl group overflow-hidden transition-all duration-300 open:bg-white/90">

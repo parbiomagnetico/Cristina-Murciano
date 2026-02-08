@@ -1,0 +1,31 @@
+--- RESUMEN DE IMÁGENES DEL BLOG ---
+Total de artículos: 80
+Artículos sin imagen: 0
+
+Imágenes duplicadas (usadas en más de un post): 8
+
+Detalle de duplicados:
+- "blog_wellness_lifestyle_premium.png" se usa en 2 posts:
+    * Masajes ¿Por qué los necesitas?
+    * ¿Equilibrarte a través de un masaje?
+- "blog-como-tratar-un-esguince.png" se usa en 2 posts:
+    * Como tratar un esguince
+    * Causas del dolor muscular
+- "blog-relajante-premium.png" se usa en 2 posts:
+    * Date un masaje relajante
+    * Masaje Antiestrés
+- "blog-masaje-con-piedras-volcanicas.png" se usa en 2 posts:
+    * ¿Masaje con piedras volcánicas?
+    * Piedras Calientes: El calor que reconforta el alma
+- "blog_stretching_premium.png" se usa en 2 posts:
+    * Estiramientos
+    * Estiramientos básicos para aliviar el dolor lumbar
+- "blog-sistema-linfatico.png" se usa en 2 posts:
+    * Como tratar la tendinitis
+    * El sistema linfático
+- "blog_drainage_legs_premium.png" se usa en 2 posts:
+    * Masaje Circulatorio
+    * Beneficios del masaje de piernas
+- "blog-bambuterapia-premium.png" se usa en 2 posts:
+    * Bambuterapia
+    * Bambuterapia: Modela tu figura con la fuerza de la naturaleza

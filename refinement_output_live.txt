@@ -1,0 +1,219 @@
+Iniciando Reescritura (Estilo Conciso) en 80 archivos...
+Hora de inicio: 20:24:45
+
+Procesando: aromaterapia-en-el-masaje.md
+  → Saltando aromaterapia-en-el-masaje.md (ya optimizado)
+Procesando: aromaterapia.md
+  → Saltando aromaterapia.md (ya optimizado)
+Procesando: automasaje-fatiga-visual-dolor-cabeza.md
+  → Saltando automasaje-fatiga-visual-dolor-cabeza.md (ya optimizado)
+Procesando: bambuterapia-masaje-canas-bambu.md
+  → Saltando bambuterapia-masaje-canas-bambu.md (ya optimizado)
+Procesando: bambuterapia.md
+  → Saltando bambuterapia.md (ya optimizado)
+Procesando: beneficio-masaje-molestias-musculares.md
+  → Saltando beneficio-masaje-molestias-musculares.md (ya optimizado)
+Procesando: beneficios-de-la-aromaterapia.md
+  → Saltando beneficios-de-la-aromaterapia.md (ya optimizado)
+Procesando: beneficios-del-masaje-contra-el-estres.md
+  → Saltando beneficios-del-masaje-contra-el-estres.md (ya optimizado)
+Procesando: beneficios-del-masaje-de-piernas.md
+  → Saltando beneficios-del-masaje-de-piernas.md (ya optimizado)
+Procesando: beneficios-del-masaje-si-sufres-de-cefaleas.md
+  → Saltando beneficios-del-masaje-si-sufres-de-cefaleas.md (ya optimizado)
+Procesando: bruxismo-atm-libera-tension.md
+  → Saltando bruxismo-atm-libera-tension.md (ya optimizado)
+Procesando: calambres-musculares-causas-prevencion.md
+  → Saltando calambres-musculares-causas-prevencion.md (ya optimizado)
+Procesando: causas-del-dolor-muscular.md
+  → Saltando causas-del-dolor-muscular.md (ya optimizado)
+Procesando: circulacion.md
+  → Saltando circulacion.md (ya optimizado)
+Procesando: como-combatir-el-estres.md
+  → Saltando como-combatir-el-estres.md (ya optimizado)
+Procesando: como-prevenir-el-dolor-lumbar.md
+  → Saltando como-prevenir-el-dolor-lumbar.md (ya optimizado)
+Procesando: como-tratar-un-esguince.md
+  → Saltando como-tratar-un-esguince.md (ya optimizado)
+Procesando: conexion-cuerpo-mente-estres-emociones.md
+  → Saltando conexion-cuerpo-mente-estres-emociones.md (ya optimizado)
+Procesando: contracturas.md
+  → Saltando contracturas.md (ya optimizado)
+Procesando: contraindicaciones-aromaterapia.md
+  → Saltando contraindicaciones-aromaterapia.md (ya optimizado)
+Procesando: corrige-tu-postura-en-el-trabajo.md
+  → Saltando corrige-tu-postura-en-el-trabajo.md (ya optimizado)
+Procesando: cuello-de-texto-text-neck-prevencion.md
+  → Saltando cuello-de-texto-text-neck-prevencion.md (ya optimizado)
+Procesando: cuidado-manos.md
+  → Saltando cuidado-manos.md (ya optimizado)
+Procesando: cuidar-cuerpo.md
+  → Saltando cuidar-cuerpo.md (ya optimizado)
+Procesando: cuidar-piel.md
+  → Saltando cuidar-piel.md (ya optimizado)
+Procesando: date-un-masaje-relajante.md
+  → Saltando date-un-masaje-relajante.md (ya optimizado)
+Procesando: drenaje-linfatico-postoperatorio-recuperacion.md
+  → Saltando drenaje-linfatico-postoperatorio-recuperacion.md (ya optimizado)
+Procesando: efectos-masaje-circulatorio.md
+  → Saltando efectos-masaje-circulatorio.md (ya optimizado)
+Procesando: ejercicios-para-reducir-la-presion-arterial-alta.md
+  → Saltando ejercicios-para-reducir-la-presion-arterial-alta.md (ya optimizado)
+Procesando: ejercicios-relajacion.md
+  → Saltando ejercicios-relajacion.md (ya optimizado)
+Procesando: el-poder-del-tacto-bienestar.md
+  → Saltando el-poder-del-tacto-bienestar.md (ya optimizado)
+Procesando: el-sistema-linfatico.md
+  → Saltando el-sistema-linfatico.md (ya optimizado)
+Procesando: equilibrarte-a-traves-de-un-masaje.md
+  → Saltando equilibrarte-a-traves-de-un-masaje.md (ya optimizado)
+Procesando: ergonomia-teletrabajo-consejos.md
+  → Saltando ergonomia-teletrabajo-consejos.md (ya optimizado)
+Procesando: estiramientos-dolor-lumbar-casa.md
+  → Saltando estiramientos-dolor-lumbar-casa.md (ya optimizado)
+Procesando: estiramientos.md
+  → Saltando estiramientos.md (ya optimizado)
+Procesando: estres-y-cortisol.md
+  → Saltando estres-y-cortisol.md (ya optimizado)
+Procesando: fascitis-plantar-dolor-talon.md
+  → Saltando fascitis-plantar-dolor-talon.md (ya optimizado)
+Procesando: fisioterapia-deportiva.md
+  → Saltando fisioterapia-deportiva.md (ya optimizado)
+Procesando: fisioterapia-sobrepeso.md
+  → Saltando fisioterapia-sobrepeso.md (ya optimizado)
+Procesando: habitos-saludables.md
+  → Saltando habitos-saludables.md (ya optimizado)
+Procesando: hidratacion-y-fascia-saludable.md
+  → Saltando hidratacion-y-fascia-saludable.md (ya optimizado)
+Procesando: hidroterapia.md
+  → Saltando hidroterapia.md (ya optimizado)
+Procesando: higiene-del-sueno-descanso-reparador.md
+  → Saltando higiene-del-sueno-descanso-reparador.md (ya optimizado)
+Procesando: importancia-hidratacion.md
+  → Saltando importancia-hidratacion.md (ya optimizado)
+Procesando: la-postura-en-el-entrenamiento.md
+  → Saltando la-postura-en-el-entrenamiento.md (ya optimizado)
+Procesando: lo-mejor-para-el-verano.md
+  → Saltando lo-mejor-para-el-verano.md (ya optimizado)
+Procesando: mas-baile-y-menos-antidepresivos.md
+  → Saltando mas-baile-y-menos-antidepresivos.md (ya optimizado)
+Procesando: masaje-abdominal-estrenimiento-digestion.md
+  → Saltando masaje-abdominal-estrenimiento-digestion.md (ya optimizado)
+Procesando: masaje-antiestres.md
+  → Saltando masaje-antiestres.md (ya optimizado)
+Procesando: masaje-circulatorio.md
+  → Saltando masaje-circulatorio.md (ya optimizado)
+Procesando: masaje-con-piedras-volcanicas.md
+  → Saltando masaje-con-piedras-volcanicas.md (ya optimizado)
+Procesando: masaje-craneal-hindu-champi.md
+  → Enviando a IA...
+  ✗ Error: Invalid control character at: line 15 column 349 (char 1151)
+
+Procesando: masaje-craneosacral.md
+  → Saltando masaje-craneosacral.md (ya optimizado)
+Procesando: masaje-deportivo-recuperacion.md
+  → Saltando masaje-deportivo-recuperacion.md (ya optimizado)
+Procesando: masaje-metamorfico.md
+  → Saltando masaje-metamorfico.md (ya optimizado)
+Procesando: masaje-muscular2.md
+  → Saltando masaje-muscular2.md (ya optimizado)
+Procesando: masaje-prenatal-seguro.md
+  → Saltando masaje-prenatal-seguro.md (ya optimizado)
+Procesando: masajes-necesidad.md
+  → Saltando masajes-necesidad.md (ya optimizado)
+Procesando: menopausia-equilibrio-natural-bienestar.md
+  → Saltando menopausia-equilibrio-natural-bienestar.md (ya optimizado)
+Procesando: migranas-masaje-suboccipital.md
+  → Saltando migranas-masaje-suboccipital.md (ya optimizado)
+Procesando: origen-de-la-bambuterapia.md
+  → Saltando origen-de-la-bambuterapia.md (ya optimizado)
+Procesando: piedras-calientes-geoterapia-relajacion.md
+  → Saltando piedras-calientes-geoterapia-relajacion.md (ya optimizado)
+Procesando: piedras-calientes.md
+  → Saltando piedras-calientes.md (ya optimizado)
+Procesando: piernas-cansadas.md
+  → Enviando a IA...
+  ✓ Éxito! piernas-cansadas.md reescrito con nuevo estilo.
+  Progreso: 1 procesados, 63 saltados
+
+Procesando: por-que-ir-a-un-profesional.md
+  → Enviando a IA...
+  ✓ Éxito! por-que-ir-a-un-profesional.md reescrito con nuevo estilo.
+  Progreso: 2 procesados, 63 saltados
+
+Procesando: presoterapia.md
+  → Enviando a IA...
+  ✓ Éxito! presoterapia.md reescrito con nuevo estilo.
+  Progreso: 3 procesados, 63 saltados
+
+Procesando: que-es-la-osteoartritis-oa.md
+  → Enviando a IA...
+  ✓ Éxito! que-es-la-osteoartritis-oa.md reescrito con nuevo estilo.
+  Progreso: 4 procesados, 63 saltados
+
+Procesando: reflexologia-podal-beneficios-mapa.md
+  → Enviando a IA...
+  ✓ Éxito! reflexologia-podal-beneficios-mapa.md reescrito con nuevo estilo.
+  Progreso: 5 procesados, 63 saltados
+
+Procesando: reflexologia-podal-infantil-conciliacion.md
+  → Enviando a IA...
+  ✓ Éxito! reflexologia-podal-infantil-conciliacion.md reescrito con nuevo estilo.
+  Progreso: 6 procesados, 63 saltados
+
+Procesando: reflexoterapia.md
+  → Enviando a IA...
+  ✓ Éxito! reflexoterapia.md reescrito con nuevo estilo.
+  Progreso: 7 procesados, 63 saltados
+
+Procesando: reiki-energia-equilibrio-chakras.md
+  → Enviando a IA...
+  ✓ Éxito! reiki-energia-equilibrio-chakras.md reescrito con nuevo estilo.
+  Progreso: 8 procesados, 63 saltados
+
+Procesando: salud-tacones.md
+  → Enviando a IA...
+  ✓ Éxito! salud-tacones.md reescrito con nuevo estilo.
+  Progreso: 9 procesados, 63 saltados
+
+Procesando: tecnicas-que-mejoran-las-alteraciones-musculoesqueleticas.md
+  → Enviando a IA...
+  ✓ Éxito! tecnicas-que-mejoran-las-alteraciones-musculoesqueleticas.md reescrito con nuevo estilo.
+  Progreso: 10 procesados, 63 saltados
+
+Procesando: tendinitis.md
+  → Enviando a IA...
+  ✗ Error: Expecting ',' delimiter: line 15 column 693 (char 1628)
+
+Procesando: teoria-de-la-inflamacion.md
+  → Enviando a IA...
+  ✓ Éxito! teoria-de-la-inflamacion.md reescrito con nuevo estilo.
+  Progreso: 11 procesados, 63 saltados
+
+Procesando: terapia-manual-osteopatia-equilibrio.md
+  → Enviando a IA...
+  ✓ Éxito! terapia-manual-osteopatia-equilibrio.md reescrito con nuevo estilo.
+  Progreso: 12 procesados, 63 saltados
+
+Procesando: tratar-sobrecarga-muscular.md
+  → Enviando a IA...
+  ✓ Éxito! tratar-sobrecarga-muscular.md reescrito con nuevo estilo.
+  Progreso: 13 procesados, 63 saltados
+
+Procesando: tratar-tendinitis.md
+  → Enviando a IA...
+  ✓ Éxito! tratar-tendinitis.md reescrito con nuevo estilo.
+  Progreso: 14 procesados, 63 saltados
+
+Procesando: vendaje-neuromuscular.md
+  → Enviando a IA...
+  ✓ Éxito! vendaje-neuromuscular.md reescrito con nuevo estilo.
+  Progreso: 15 procesados, 63 saltados
+
+
+==================================================
+RESUMEN FINAL:
+  Total procesados: 15
+  Total saltados: 63
+  Hora de fin: 20:29:12
+==================================================

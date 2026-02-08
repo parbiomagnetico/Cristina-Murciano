@@ -3,25 +3,38 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
 import { Picture } from "astro:assets";
-import posts from "../../data/posts.json";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog", ({ data }) => {
+    return data.active !== false;
+});
+
 const images = import.meta.glob<{ default: ImageMetadata }>(
     "/src/assets/images/*.{png,webp,jpg,jpeg}",
     { eager: true },
 );
 ---
 
-<BaseLayout title="Blog | Cristina Murciano">
+<BaseLayout
+    title="Blog de Masajes y Salud Natural | Diario de Bienestar"
+    description="Consejos prácticos sobre masajes, estiramientos y salud natural de la mano de Cristina Murciano, tu masajista de confianza en Monzón."
+>
     <Nav />
 
     <main class="pt-32 pb-20 px-6">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <span
-                class="text-teal-600 font-medium tracking-widest uppercase text-sm"
-                >Diario de Bienestar</span
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+            <h1
+                class="text-teal-600 font-sans font-medium tracking-widest uppercase text-sm"
             >
-            <h1 class="text-4xl md:text-5xl font-serif text-gray-800 mt-4 mb-6">
-                Artículos y <span class="holographic-text">Consejos</span>
+                Diario de Bienestar
             </h1>
+            <h2
+                class="text-4xl md:text-5xl font-serif text-gray-800 mt-4 mb-6 reveal-heading"
+            >
+                Artículos y <span class="holographic-text normal-case"
+                    >consejos</span
+                >
+            </h2>
             <p class="text-gray-500 font-light text-lg">
                 Espacio dedicado a compartir conocimientos sobre salud natural,
                 autocuidado y equilibrio.
@@ -30,70 +43,83 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 
         <div
             id="blog-grid"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto reveal"
         >
             {
                 posts
                     .sort(
                         (a, b) =>
-                            new Date(b.date).getTime() -
-                            new Date(a.date).getTime(),
+                            new Date(b.data.date).getTime() -
+                            new Date(a.data.date).getTime(),
                     )
                     .map((post, index) => {
                         const imageSrc =
-                            images[`/src/assets/images/${post.image}`]?.default;
+                            images[`/src/assets/images/${post.data.image}`]
+                                ?.default;
+
+                        const altText =
+                            post.data.image_alt ||
+                            post.data.title ||
+                            "Artículo del blog";
+                        if (!altText)
+                            console.error(
+                                `[MetaWarning] Missing alt text for ${post.slug}`,
+                            );
+
                         return (
                             <a
                                 href={`/blog/${post.slug}`}
-                                class={`group glass-panel rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-300 flex flex-col h-full blog-post-card ${index >= 9 ? "hidden" : ""}`}
-                                data-index={index}
+                                class={`group flex flex-col h-full bg-white rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 border border-gray-100 blog-post-card ${index >= 9 ? "hidden" : ""}`}
                             >
-                                <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                                <div class="aspect-[4/3] overflow-hidden relative">
                                     {imageSrc && (
                                         <Picture
                                             src={imageSrc}
-                                            alt={post.image_alt || post.title}
+                                            alt={altText}
                                             formats={["avif", "webp"]}
                                             widths={[400, 800]}
                                             sizes="(max-width: 768px) 100vw, 400px"
-                                            loading={
-                                                index < 3 ? "eager" : "lazy"
-                                            }
-                                            fetchpriority={
-                                                index < 3 ? "high" : "auto"
-                                            }
                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                         />
                                     )}
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 </div>
 
                                 <div class="p-8 flex flex-col flex-grow">
-                                    <span class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3 block">
-                                        {post.date}
-                                    </span>
                                     <h2 class="text-2xl font-serif text-gray-800 mb-3 group-hover:text-lilac-600 transition-colors line-clamp-2">
-                                        {post.title}
+                                        {post.data.title}
                                     </h2>
                                     <p class="text-gray-500 font-light mb-6 line-clamp-3 text-sm leading-relaxed flex-grow">
-                                        {post.excerpt}
+                                        {post.data.excerpt}
                                     </p>
-                                    <span class="text-sm font-medium text-gray-900 group-hover:text-teal-600 transition-colors flex items-center mt-auto">
-                                        Leer artículo
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                            />
-                                        </svg>
-                                    </span>
+                                    <div class="flex items-center justify-between mt-auto">
+                                        <span class="text-sm font-medium text-gray-900 group-hover:text-teal-600 transition-colors flex items-center">
+                                            Leer artículo
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <span class="text-[10px] uppercase tracking-widest text-gray-400 font-light italic">
+                                            {new Date(
+                                                post.data.date,
+                                            ).toLocaleDateString("es-ES", {
+                                                year: "numeric",
+                                                month: "short",
+                                                day: "numeric",
+                                            })}
+                                        </span>
+                                    </div>
                                 </div>
                             </a>
                         );

@@ -12,13 +12,13 @@ import re
 load_dotenv()
 API_KEY = os.getenv("GOOGLE_API_KEY")
 
-# ⚠️ RUTA DEL BLOG (Ajusta si es necesario)
+# ⚠️ RUTA DEL BLOG
 DIRECTORIO_BLOG = "./src/content/blog" 
 
 if not API_KEY:
     raise ValueError("❌ ERROR: No se encontró GOOGLE_API_KEY en el archivo .env")
 
-# --- SEGURIDAD (ANTIBLOQUEO) ---
+# --- SEGURIDAD ---
 safety_settings = {
     HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
     HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
@@ -27,48 +27,48 @@ safety_settings = {
 }
 
 genai.configure(api_key=API_KEY)
+# Usamos gemini-2.5-flash como solicitó el usuario
 model = genai.GenerativeModel(
-    'gemini-2.5-pro', # ⚠️ USAMOS PRO PARA MAYOR CALIDAD EN TEXTOS LARGOS (Si da error 429, cambia a flash)
+    'gemini-2.5-flash', 
     generation_config={"response_mime_type": "application/json"},
     safety_settings=safety_settings
 )
 
-# --- EL CEREBRO (TERAPEUTA MANUAL SENIOR) ---
+# --- EL CEREBRO (TERAPEUTA CERCANA) ---
 SYSTEM_INSTRUCTION = """
-ACTÚA COMO: Cristina Murciano, Terapeuta Manual Experta (Quiromasaje, Osteopatía, Drenaje). 
-Tu consulta está en Monzón (Huesca).
+ACTÚA COMO: Cristina Murciano, Fisioterapeuta y Osteópata experta en Monzón.
+TU ESTILO: Premium, profesional pero cercano, empático y sosegado. Transmitiendo calma y autoridad técnica sin ser pedante.
 
-OBJETIVO: Convertir un borrador básico en un ARTÍCULO PILAR SEO (1.000 - 1.200 palabras).
-El artículo debe posicionarte como la mayor autoridad local en bienestar y alivio del dolor.
+OBJETIVO:
+Reescribir un artículo de blog para elevar su calidad al nivel de "parbiomagnetico.es/blog".
+Debe ser interesante, fácil de leer y exquisitamente estructurado.
 
-TONO:
-- Profesional pero cálido (como si hablaras con un paciente en la camilla).
-- Educativo: Usa términos anatómicos correctos (fascia, cortisol, sistema linfático) pero explicados sencillos.
-- Persuasivo: El lector debe sentir que "entiendes su dolor".
+LONGITUD OBJETIVO: 
+Alrededor de 400 palabras. (Concisión y valor).
 
-ESTRUCTURA OBLIGATORIA DEL CONTENIDO (Markdown):
-1.  **H1: Título Gancho** (Ej: "Ciática: Por qué ocurre y cómo calmarla sin pastillas").
-2.  **Introducción Empática:** "Sé cómo te sientes...". Describe los síntomas cotidianos.
-3.  **H2: La Raíz del Problema (Anatomía y Emoción):**
-    - Explica qué pasa dentro del cuerpo (contractura, inflamación, estrés).
-    - Menciona la conexión cuerpo-mente (somatización).
-4.  **H2: Cómo te ayuda la Terapia Manual:**
-    - No hables de "masajes genéricos". Habla de "liberación miofascial", "descontracturante", "equilibrio".
-    - Explica el mecanismo de alivio.
-5.  **H2: Beneficios Concretos:**
-    - Lista con bullet points (Mejora sueño, movilidad, reduce ansiedad...).
-6.  **H2: ¿Por qué elegirnos en Monzón?**
-    - Autoridad local y trato personalizado.
-7.  **Conclusión y CTA:** Invitación directa a reservar cita.
+REGLAS DE ORO DE REDACCIÓN:
+1.  **Estructura Impecable:** Usa H2 y párrafos cortos. El texto debe "respirar".
+2.  **SEO Natural:** El artículo debe posicionar por el tema (ej: "Dolor muscular"), pero SIN repetir palabras clave robóticamente.
+3.  **Toque Local Sutil:** Menciona "Monzón" o "mi consulta en Monzón" **SOLO UNA VEZ** y preferiblemente en el cierre o CTA final. NO lo repitas por todo el texto.
+4.  **Enfoque Holístico:** No hables solo de músculos; habla de bienestar, estrés y conexión cuerpo-mente si el tema lo permite.
+5.  **Sin Relleno:** Elimina frases vacías como "En el vertiginoso mundo de hoy...". Ve al grano con elegancia.
+6.  **Formato:** Markdown limpio. No uses H1 (el título ya va en el frontmatter).
 
-SALIDA JSON (Estricta):
+ESTRUCTURA SUGERIDA (No pongas los nombres de las secciones literales, fluye):
+- **Introducción empática:** Conecta con el problema del lector.
+- **El porqué (Cuerpo):** Explicación técnica sencilla de lo que ocurre.
+- **La Solución (Tratamiento):** Cómo lo abordamos en consulta (técnicas manuales, ambiente, etc.).
+- **Beneficios:** Qué sentirá el paciente después.
+- **Cierre/CTA:** Invitación suave a reservar en Monzón.
+
+SALIDA JSON:
 {
-  "new_title": "Título H1 optimizado SEO",
-  "seo_excerpt": "Meta descripción (155 car) con palabra clave + Monzón",
-  "social_caption": "Texto para Instagram: Problema + Solución + Hashtags (#Monzon #Bienestar #Masaje)",
-  "category": "Categoría sugerida (ej: Dolor de Espalda, Bienestar, Estrés)",
+  "new_title": "Título H1 Atractivo y SEO-Friendly",
+  "seo_excerpt": "Meta descripción (150-160 chars) persuasiva para Google.",
+  "social_caption": "Texto breve y atractivo para compartir en Instagram/Facebook con hashtags.",
+  "category": "Categoría principal (ej: Fisioterapia, Bienestar, Osteopatía)",
   "tags": ["tag1", "tag2", "tag3"],
-  "markdown_content": "# Título H1\n\n[Contenido completo del artículo siguiendo la estructura]..."
+  "markdown_content": "[El contenido completo del artículo en Markdown sin el título H1]"
 }
 """
 
@@ -80,83 +80,78 @@ def procesar_blog_premium():
     if not os.path.exists(DIRECTORIO_BLOG):
          print(f"❌ Error: No existe el directorio: {DIRECTORIO_BLOG}")
          return
-
+ 
+    # Abrir archivo de log para salida en tiempo real
+    log_file = open("refinement_output_live.txt", "w", encoding="utf-8")
+    
+    def log(mensaje):
+        print(mensaje)
+        log_file.write(mensaje + "\n")
+        log_file.flush()  # Forzar escritura inmediata
+ 
     archivos = [f for f in os.listdir(DIRECTORIO_BLOG) if f.endswith(".md")]
-    print(f"🌟 Iniciando Reescritura PREMIUM en {len(archivos)} artículos...")
+    archivos.sort()
+    
+    log(f"Iniciando Reescritura (Estilo Conciso) en {len(archivos)} archivos...")
+    log(f"Hora de inicio: {time.strftime('%H:%M:%S')}")
+    log("")
     
     procesados = 0
-    omitidos = 0
-
-    pbar = tqdm(archivos, desc="Creando Artículos Pilar")
-
-    for nombre_archivo in pbar:
+    saltados = 0
+    
+    for nombre_archivo in archivos:
         ruta_completa = os.path.join(DIRECTORIO_BLOG, nombre_archivo)
+        log(f"Procesando: {nombre_archivo}")
         
-        # --- BUCLE TANQUE (Retry Infinito) ---
-        while True:
-            try:
-                post = frontmatter.load(ruta_completa)
-                
-                # --- FILTROS ---
-                # 1. Solo procesar si active es False (Borradores)
-                #if post.get('active', False) is True:
-                #    omitidos += 1
-                #    break 
+        try:
+            post = frontmatter.load(ruta_completa)
+            
+            if post.get('optimized', False): 
+                log(f"  → Saltando {nombre_archivo} (ya optimizado)")
+                saltados += 1
+                continue
 
-                # 2. Si ya está optimizado, saltar
-                #if post.get('optimized', False) is True:
-                #    omitidos += 1
-                #    break
+            prompt_usuario = f"POST ORIGINAL:\nTítulo: {post.get('title', '')}\nContenido:\n{post.content}"
+ 
+            log(f"  → Enviando a IA...")
+            response = model.generate_content(f"{SYSTEM_INSTRUCTION}\n\n{prompt_usuario}")
+            datos_ia = json.loads(limpiar_json(response.text))
+            
+            # Actualizar frontmatter
+            post['title'] = datos_ia['new_title']
+            post['excerpt'] = datos_ia['seo_excerpt']
+            post['social_caption'] = datos_ia['social_caption']
+            post['category'] = datos_ia['category']
+            post['tags'] = datos_ia['tags']
+            
+            # Actualizar contenido
+            post.content = datos_ia['markdown_content']
+            post['active'] = True # Mantener artículo visible
+            post['optimized'] = True 
+            
+            with open(ruta_completa, "w", encoding="utf-8") as f:
+                f.write(frontmatter.dumps(post))
+            
+            procesados += 1
+            log(f"  ✓ Éxito! {nombre_archivo} reescrito con nuevo estilo.")
+            log(f"  Progreso: {procesados} procesados, {saltados} saltados")
+            log("")
+            time.sleep(2) # Pausa reducida para ir más rápido
 
-                # --- GENERAR ---
-                pbar.set_description(f"✍️ Escribiendo: {nombre_archivo[:10]}...")
-                
-                # Le pasamos título y contenido actual
-                prompt_usuario = f"BORRADOR ORIGINAL:\nTítulo: {post.get('title', '')}\nContenido:\n{post.content}"
-
-                response = model.generate_content(f"{SYSTEM_INSTRUCTION}\n\n{prompt_usuario}")
-                datos_ia = json.loads(limpiar_json(response.text))
-                
-                # --- ACTUALIZACIÓN FRONTMATTER ---
-                post['title'] = datos_ia['new_title']
-                post['excerpt'] = datos_ia['seo_excerpt']
-                post['social_caption'] = datos_ia['social_caption']
-                post['category'] = datos_ia['category']
-                post['tags'] = datos_ia['tags']
-                
-                # Mantenemos layout e imagen si existen, si no, los dejamos igual
-                if not post.get('layout'):
-                     post['layout'] = '../../layouts/BlogPost.astro'
-                
-                # Marcas de control
-                post['active'] = False # Seguimos en borrador para revisión
-                post['optimized'] = True # Marca de calidad
-                
-                # Reemplazo total del cuerpo
-                post.content = datos_ia['markdown_content']
-                
-                with open(ruta_completa, "w", encoding="utf-8") as f:
-                    f.write(frontmatter.dumps(post))
-                    
-                procesados += 1
-                
-                # Pausa de seguridad (Al usar PRO, necesitamos más pausa)
-                time.sleep(10) 
-                break 
-
-            except Exception as e:
-                error_str = str(e)
-                if "429" in error_str:
-                    pbar.set_description(f"⛔ 429 (Cuota). Esperando 60s...")
-                    time.sleep(60) # Espera larga para modelo Pro
-                elif "Safety" in error_str:
-                    print(f"\n⚠️ Bloqueo de seguridad en {nombre_archivo}. Reintentando...")
-                    time.sleep(5)
-                else:
-                    print(f"\n⚠️ Error en {nombre_archivo}: {e}")
-                    time.sleep(15)
-
-    print(f"\n✅ FINALIZADO: {procesados} Artículos Pilar creados. {omitidos} ignorados.")
+        except Exception as e:
+            log(f"  ✗ Error: {e}")
+            if "429" in str(e):
+                log("  Cuota excedida, esperando 60s...")
+                time.sleep(60)
+            log("")
+    
+    log(f"\n{'='*50}")
+    log(f"RESUMEN FINAL:")
+    log(f"  Total procesados: {procesados}")
+    log(f"  Total saltados: {saltados}")
+    log(f"  Hora de fin: {time.strftime('%H:%M:%S')}")
+    log(f"{'='*50}")
+    log_file.close()
 
 if __name__ == "__main__":
     procesar_blog_premium()
